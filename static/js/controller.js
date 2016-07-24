@@ -73,17 +73,13 @@ export default class Control{
         
     }
 
-    createPageStructure(structure, widgets, container) {
-        structure = structure || [];
-        widgets = widgets || [];
-        container = container || '#page-wrapper';
+    createPageStructure(structure = '', widgets = [], container = '#page-wrapper') {
         container = $(container);
-
-        structure.forEach(function (item) {
-            var item = item.replace(/\./g, ' ');
-            var eleHtml = '<div class="' + item + '"></div>';
-            container.append($(eleHtml));
-        });
+        
+        if (structure) {
+            structure = $(structure);
+            container.append(structure);
+        }
 
         var counter = 1;
         for (var i in widgets) {
@@ -91,7 +87,7 @@ export default class Control{
                 var item = widgets[i];
                 var eleHtml = '<div class="dynamic-widget-' + counter + '"></div>';
                 var eleDom = $(eleHtml);
-                var wrapper = item.container ? $(item.container) : container;
+                var wrapper = item.container ? container.find(item.container) : container;
 
                 wrapper.append(eleDom);
 

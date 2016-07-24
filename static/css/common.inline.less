@@ -76,7 +76,31 @@
 		-webkit-animation:loading-circle 1s infinite linear;
     }
 }
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
 
+.clearfix:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.clearfix {
+    *zoom: 1;
+}
+.left {
+    float: left;
+    display: inline-block;
+}
+.right {
+    float: right;
+    display: inline-block;
+}
 .com-border-bottom,
 .com-border-top,
 .com-border-left,

@@ -14,8 +14,8 @@ var header = Widget.extend({
         message: 'hello xuyawei'
     },
     
-    init: function () {
-        var vm = this.display(this.data, tpl);
+    init: function (data) {
+        var vm = this.display(data, tpl);
 
         // vm.$set('message', 'hello taotao');
     }
