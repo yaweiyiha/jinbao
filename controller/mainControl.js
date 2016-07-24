@@ -7,6 +7,12 @@ var widgets  = {
         data: {
             username: 'xuyawei'
         }
+    },
+    form : {
+        widget: 'form',
+        data: {
+            username: 'xuyawei'
+        }
     }
 };
 
@@ -20,7 +26,7 @@ class MainControl extends Control{
 
         this.pageStructure = [];
         this.widgets = this.createPageStructure(this.pageStructure, widgets);
-        this.getViews([this.widgets.header]);
+        this.getViews([this.widgets.header,this.widgets.form]);
     }
 }
 

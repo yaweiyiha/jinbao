@@ -62,7 +62,7 @@ export default class Control{
         require.async(widgetResource, function (...widgets) {
             widgets.forEach(function (widget, index) {
                 try {
-                    widget.default.createWidget(dataResource[index]);
+                    widget.createWidget(dataResource[index]);
                 } catch (e) {
                     console.error(e);
                 }

@@ -36,7 +36,7 @@ class Router {
         listener.trigger('page', 'change');
         
         require.async(path, function (controller) {
-            var cc = new controller.default();
+            var cc = new controller();
         });
     }
 }

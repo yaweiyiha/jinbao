@@ -28,7 +28,7 @@ var url = {
 
         var hash = location.hash.match(/\?/) ? location.hash.split('?')[0] : location.hash;
         if (hash.substr(0, 1) == '#')
-            hash = hash.substr(1);
+            hash = hash.substr(1).split('/')[0];
         return hash;
     },
     /**

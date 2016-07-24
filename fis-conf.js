@@ -125,13 +125,7 @@ fis.match('::package', {
             'controller/centerControl.js',
             'model/centermodel.js',
             'widget/header/header.js',
-            'widget/experience/experience.js',
-            'widget/countup/countup.js',
-            'widget/userCities/userCities.js',
-            'widget/task/task.js',
-            'widget/signList/signList.js',
-            'widget/levelRights/levelRights.js',
-            'widget/achievement/achievement.js'
+            'widget/form/form.js'
         ],
         'static/like_sync_0_pkg.js': [
             'controller/likeControl.js',
