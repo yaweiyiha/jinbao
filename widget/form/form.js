@@ -9,14 +9,18 @@ require.loadCss({
 });
 
 var form = Widget.extend({
-
-    data : {
-        message: 'hello xuyawei'
-    },
     
-    init: function () {
-        var vm = this.display(this.data, tpl);
+    init: function (data = {}) {
+    	data  = this.processData(data);
+        this.vm = this.display(data, tpl);
+    },
+    processData : function (data){
+    	return data;
+    },
 
+    method:{
+    	doSomeThing : function(){
+    	}
     }
 })
 

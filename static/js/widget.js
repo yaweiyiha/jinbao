@@ -52,6 +52,7 @@ var Widget = (function() {
                 el: container.get(0),
                 data: data,
                 template: tpl,
+                methods: me.method
             });
         }
 

@@ -11,22 +11,24 @@ var widgets  = {
     form : {
         widget: 'form',
         data: {
-            username: 'xuyawei'
+            username: 'xuyawei',
+            formdata: {},
         }
     }
 };
 
 class MainControl extends Control{
 
-    constructor(){
-        super();
+    constructor(data){
+        super(data);
     }
 
-    init(opt) {
+    init(data) {
 
         this.pageStructure = [];
+
         this.widgets = this.createPageStructure(this.pageStructure, widgets);
-        this.getViews([this.widgets.header,this.widgets.form]);
+        this.getViews([this.widgets.header,this.widgets.form], data.form);
     }
 }
 

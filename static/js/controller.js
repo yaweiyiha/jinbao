@@ -9,8 +9,8 @@
 
 export default class Control{
 
- 	constructor(opt){
- 		this.init  && this.init();
+ 	constructor(data){
+ 		this.init  && this.init(data);
  	}
 
  	_init(opt) {

@@ -1,57 +1,37 @@
 <div class="jinbao-widget-form navbar  navbar-fixed-top">
 	<div class="breadcrumbs" id="breadcrumbs">
         <ul class="breadcrumb">
-            <li>订单管理</li>
-            <li>投资审核</li>
+            <li>{{title}}</li>
+            <li>{{subtitle}}</li>
         </ul>
     </div>
     <div>
         <div class="panel-heading">
-            <h3 class="panel-title">订单管理</h3>
+            <h3 class="panel-title">{{title}}</h3>
         </div>
         <ul class="nav nav-tabs nav-justified">
-            <li class="active"><a href="/admin/sales/orderEffective">未审核</a></li>
-            <li><a href="/admin/sales/orderProcess">审核通过</a></li>
-            <li><a href="/admin/sales/orderFailure">审核不通过</a></li>
-            <li><a href="/admin/sales/orderAll">所有订单</a></li>
+          <li v-bind:class="[index===0 ? 'active' : '']" v-for="(index, tab) in tabs">
+            <a href="javascript:;" data-key="{{ tab.key }}" @click="doSomeThing">{{ tab.value }}</a>
+          </li>
         </ul>
 
         <div class="panel panel-default">
             <div class="panel-body">
-                <div class="row">
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-addon">订单号</div>
-                        <input class="form-control" id="orderNumber" name="orderNumber" value="" maxlength="40" placeholder="">
+                <div v-for=" row in formlist">
+                    <div class= "row" >
+                      <div v-for="(index, item) in row">
+                        <div class="{{ item.length }}" >
+                            <div class="form-group input-group">
+                                <div class="input-group-addon">{{ item.name }}</div>
+                                <input v-if="item.type === 'input'" class="form-control" id="orderNumber" name="orderNumber" value="" maxlength="40" placeholder="">
+                                <select v-else="item.type === 'select'" class="form-control" id="orderNumber" name="orderNumber" value="" maxlength="40" placeholder="" >
+                                    <option value="" v-for="option in item.selectList">{{option}}</option>
+                                </select>
+                             </div>
+                          </div>                          
                       </div>
+
                     </div>
-                  </div>
-                   <div class="col-md-3">
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-addon">产品名称</div>
-                        <input class="form-control" id="productName" name="productName" value="" maxlength="40" placeholder="">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-addon">理财经理</div>
-                        <input class="form-control" id="manageName" name="manageName" value="" maxlength="40" placeholder="">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-addon">理财经理账号</div>
-                        <input class="form-control" id="manageAccount" name="manageAccount" value="" maxlength="40" placeholder="">
-                      </div>
-                    </div>
-                  </div>
-                
                 </div>
             </div>
         </div>

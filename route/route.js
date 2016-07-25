@@ -29,14 +29,17 @@ class Router {
 
     navigation() {
 
-        var me = this;
-        var pageName = Url.getHash() || this.DEFUALT_PAGE;
-        var path = `usersysv2:controller/${pageName}Control.js`;
+        let me = this;
+        let hash = Url.getHash() || this.DEFUALT_PAGE;
+        let page = Url.getPage() || '';
+        let configData = urlConfig[page];
+        let path = `usersysv2:controller/${hash}Control.js`;
         
         listener.trigger('page', 'change');
         
         require.async(path, function (controller) {
-            var cc = new controller();
+            new controller(configData);
+
         });
     }
 }

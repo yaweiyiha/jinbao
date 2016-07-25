@@ -2,10 +2,6 @@
 
 'use strict';
 
-let a  = 1 ; 
-
-
-
 var url = {
 
     url: '',
@@ -30,6 +26,16 @@ var url = {
         if (hash.substr(0, 1) == '#')
             hash = hash.substr(1).split('/')[0];
         return hash;
+    },
+
+    getPage: function (){
+
+        var hash = location.hash.match(/\?/) ? location.hash.split('?')[0] : location.hash;
+        if (hash.substr(0, 1) == '#'){
+            let pos = location.hash.substr(1).search(/\//);
+            var page = location.hash.substr(pos + 2);
+        }
+        return page;
     },
     /**
      * 将url参数部分解析成key/value形式
