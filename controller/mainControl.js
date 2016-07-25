@@ -1,21 +1,40 @@
+/**
+ * 此处需要声明 require.async所有的可能值
+ * @require.async usersysv2:widget/header/header.js
+ * @require.async usersysv2:widget/form/form.js
+ * @require.async usersysv2:widget/menu/menu.js
+ */
+
 import Control from 'static/js/controller.js'
 
-// console.log(control);
+var style = __inline('/static/css/page/main-page.inline.less');
+
+require.loadCss({
+    name: 'jinbao-main-page-style',
+    content: style
+});
+
 var widgets  = {
     header: {
         widget: 'header',
         data: {
             username: 'xuyawei'
-        }
+        },
+        container: '.header-box'
     },
     form : {
         widget: 'form',
         data: {
             username: 'xuyawei',
-            formdata: {},
-        }
+        },
+        container: '.content-box'
+    },
+    menu : {
+        widget: 'menu',
+        container: '.menu-box'
     }
 };
+
 
 class MainControl extends Control{
 
@@ -23,12 +42,11 @@ class MainControl extends Control{
         super(data);
     }
 
-    init(data) {
+    init(data,pageStructure) {
 
-        this.pageStructure = [];
-
-        this.widgets = this.createPageStructure(this.pageStructure, widgets);
+        this.widgets = this.createPageStructure(pageStructure, widgets);
         this.getViews([this.widgets.header,this.widgets.form], data.form);
+
     }
 }
 

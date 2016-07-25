@@ -14,7 +14,7 @@
                         <img class="nav-user-photo" src="/static/img/default_user.jpg">
                         <span class="user-info" style="font-size: 13px;">
                             <small style="font-size: 12px;">您好,</small>
-                            bwotaadmin
+                            {{ username }}
                         </span>
                         <i class="icon-caret-down"></i>
                     </a>

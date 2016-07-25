@@ -1,9 +1,9 @@
 <div class="jinbao-widget-form navbar  navbar-fixed-top">
 	<div class="breadcrumbs" id="breadcrumbs">
-        <ul class="breadcrumb">
+<!--         <ul class="breadcrumb">
             <li>{{title}}</li>
             <li>{{subtitle}}</li>
-        </ul>
+        </ul> -->
     </div>
     <div>
         <div class="panel-heading">
@@ -22,11 +22,12 @@
                       <div v-for="(index, item) in row">
                         <div class="{{ item.length }}" >
                             <div class="form-group input-group">
-                                <div class="input-group-addon">{{ item.name }}</div>
+                                <div class="input-group-addon" v-if="item.type != button">{{ item.name }}</div>
                                 <input v-if="item.type === 'input'" class="form-control" id="orderNumber" name="orderNumber" value="" maxlength="40" placeholder="">
-                                <select v-else="item.type === 'select'" class="form-control" id="orderNumber" name="orderNumber" value="" maxlength="40" placeholder="" >
+                                <select v-if="item.type === 'select'" class="form-control" placeholder="" >
                                     <option value="" v-for="option in item.selectList">{{option}}</option>
                                 </select>
+                           <button  v-if="item.type === 'button'"  class="{{item.classList}}">{{item.name}}</button>                               
                              </div>
                           </div>                          
                       </div>

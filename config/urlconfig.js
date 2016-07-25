@@ -22,7 +22,11 @@ window.urlConfig = {
 					{ name : '类型', length : 'col-md-3',selectList : ['全部','续投','普通'], type:'select'},
 					{ name : '下单时间', length : 'col-md-3' ,type : 'input' },
 					{ name : '到', length : 'col-md-3',type : 'input'},
+				],[
+					{ name : '搜索', classList : 'btn btn-primary search',type : 'button'},
+					{ name : '重置搜索条件', classList : 'btn btn-primary search',type : 'button'},
 				]
+
 			],
 			'title' : '订单管理',
 			'subtitle' : '投资审核'
