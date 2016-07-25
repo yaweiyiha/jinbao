@@ -32,7 +32,7 @@ var Widget = (function() {
         this._load_error = !!flag;
     }
 
-    Widget.prototype.display = function (data, tpl) {
+    Widget.prototype.display = function (data, tpl, type = 'vue') {
         var me = this;
         var _data_ = this._data_;
         var container = this._containerDom_;
@@ -47,13 +47,20 @@ var Widget = (function() {
         if (_data_._error_ === INTERFACE_FATAL_ERROR) {
             tpl.find('.content-wrapper').remove();
             tpl.find('.error-wrapper').empty().append($(errorTpl));
-        } else {
+        } else if (type === 'vue') {
             vm = new Vue({
                 el: container.get(0),
                 data: data,
                 template: tpl,
                 methods: me.method
             });
+
+            return vm;
+
+        } else if (type === 'native') {
+            var tpl = $(tpl(data));
+            container.append(tpl);
+            return tpl;
         }
 
         // tpl.appendTo(container);
@@ -63,7 +70,6 @@ var Widget = (function() {
         //     $(this).find('.info').text('重新加载中...');
         //     me.reload();
         // });
-        return vm;
     }
 
     Widget.prototype.reload = function () {

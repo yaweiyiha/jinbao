@@ -32,7 +32,7 @@ class Router {
         let me = this;
         let hash = Url.getHash() || this.DEFUALT_PAGE;
         let page = Url.getPage() || '';
-        let configData = urlConfig[page];
+        let configData = urlConfig[page] || {};
         let path = `usersysv2:controller/${hash}Control.js`;
         
         listener.trigger('page', 'change');

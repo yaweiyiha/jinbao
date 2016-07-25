@@ -51,10 +51,10 @@ fis.media('xuxu').match('*', {
      parse files 
 **********************/
 
-// fis.match('*.tmpl', {
-//     rExt: '.js',
-//     parser: fis.plugin('bdtmpl') 
-// });
+fis.match('*.tmpl', {
+    rExt: '.js',
+    parser: fis.plugin('bdtmpl') 
+});
 
 fis.match('*.less', {
     rExt: '.css',
@@ -93,8 +93,15 @@ fis.match('static/css/achievement/*.css', {
 });
 
 // fis parse es6 to es5
-fis.match('/{controller,widget,model,route,config}/**.js', {
-    parser: fis.plugin('babel')
+fis.match('/widget/**.js', {
+    parser: fis.plugin('babel', {
+        blacklist: ["useStrict"]
+    })
+});
+fis.match('/{controller,model,route,config}/**.js', {
+    parser: fis.plugin('babel', {
+        blacklist: ["useStrict"]
+    })
 });
 
 fis.match('static/js/**.js', {

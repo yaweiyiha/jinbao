@@ -1,0 +1,48 @@
+<div class="jinbao-widget-form">
+  <div class="breadcrumbs" id="breadcrumbs">
+        <ul class="breadcrumb">
+            <li><%-title%></li>
+            <li><%-subtitle%></li>
+        </ul>
+  </div>
+  <div>
+    <div class="panel-heading">
+        <h3 class="panel-title"><%-title%></h3>
+    </div>
+    <ul class="nav nav-tabs nav-justified">
+    <%for (var i = 0, len = tabs.length; i < len; i++ ) {%>
+      <li>
+        <a href="javascript:;" data-key="<%-tabs[i].key%>" @click="doSomeThing"><%-tabs[i].value%></a>
+      </li>
+    <%}%>
+    </ul>
+    <div class="panel panel-default">
+      <div class="panel-body">
+      <%for (var i = 0, len = formlist.length; i < len; i++ ) {%>
+      <div class="row">
+        <%for (var j = 0, lenj = formlist[i].length; j < lenj; j++ ) {%>
+          <% var item = formlist[i][j]; %>
+          <div class="<%-item.wrapperClass%> input-wrapper">
+            <%if (item.type === 'input') {%>
+              <div class="form-group input-group">
+                <div class="input-group-addon" ><%-item.name%></div>
+                <input class="form-control" value="" maxlength="40" placeholder="">
+              </div>
+            <%} else if (item.type === 'select') {%>
+              <div class="form-group input-group">
+                  <div class="input-group-addon" ><%-item.name%></div>
+                  <select class="form-control" placeholder="" >
+                  <%for (var k = 0, lenk = item.selectList.length; k < lenk; k++ ) {%>
+                    <option value=""><%-item.selectList[k]%></option>
+                  <%}%>
+                  </select>
+              </div> 
+            <%} else if (item.type === 'button') {%>
+              <button class="<%-item.classList%>"><%-item.name%></button>
+            <%}%>
+          </div>
+        <%}%>
+      </div>
+      <%}%>
+  </div>
+</div>

@@ -10,16 +10,7 @@
 export default class Control{
 
  	constructor(data){
-
-        let pageStructure = 
-            `<div class="header-box clearfix"></div>
-                <div class="clearfix">
-                <div class="menu-box left"></div>
-                <div class="content-box right"></div>
-            </div>`;
- 		this.init  && this.init(data,pageStructure);
-
-
+ 		this.init  && this.init(data);
  	}
 
  	_init(opt) {

@@ -35,6 +35,12 @@ var widgets  = {
     }
 };
 
+let pageStructure = `
+<div class="header-box"></div>
+<div class="clearfix">
+    <div class="menu-box left"></div>
+    <div class="content-box right"></div>
+</div>`;
 
 class MainControl extends Control{
 
@@ -42,9 +48,10 @@ class MainControl extends Control{
         super(data);
     }
 
-    init(data,pageStructure) {
+    init(data) {
 
         this.widgets = this.createPageStructure(pageStructure, widgets);
+        console.log(this.widgets);
         this.getViews([this.widgets.header,this.widgets.form,this.widgets.menu], data.form);
 
     }
