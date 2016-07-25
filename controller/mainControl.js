@@ -45,7 +45,7 @@ class MainControl extends Control{
     init(data,pageStructure) {
 
         this.widgets = this.createPageStructure(pageStructure, widgets);
-        this.getViews([this.widgets.header,this.widgets.form], data.form);
+        this.getViews([this.widgets.header,this.widgets.form,this.widgets.menu], data.form);
 
     }
 }

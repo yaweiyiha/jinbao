@@ -9,13 +9,13 @@ window.urlConfig = {
 			],
 			'formlist' :[
 				[ 	
-					{ name : 'xuxu', length : 'col-md-3' ,type : 'input'},
+					{ name : '订单号', length : 'col-md-3' ,   type : 'input'},
 					{ name : '产品名称', length : 'col-md-3' , type : 'input' },
-					{ name : '理财经理', length : 'col-md-3' ,type : 'input'},
-					{ name : '理财经理账号', length : 'col-md-3',type : 'input'},
+					{ name : '理财经理', length : 'col-md-3' , type : 'input'},
+					{ name : '理财经理账号', length : 'col-md-3', type : 'input'},
 				],[	
-					{ name : '投资人', length : 'col-md-3',type : 'input'},
-					{ name : '理财师归属地' , length :'col-md-9' ,type : 'select'},
+					{ name : '投资人',  length : 'col-md-3',type : 'input'},
+					{ name : '理财师归属地' , length :'col-md-9' ,type : 'area'},
 				],[
 					{ name : '待审核状态', length : 'col-md-3',
 				      selectList : ['全部','资料审核','资料复核','支付审核','产品审核','产品二次复核','总审核'] ,type:'select'},
