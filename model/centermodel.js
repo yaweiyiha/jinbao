@@ -1,68 +1,76 @@
+import Model from 'static/js/model.js'
 
-var url = require('usersysv2:widget/url/url.js');
+var url = require('jinbao:widget/url/url.js');
 
-var urlDict  = {
-    center : 'user/pipe/',
-    task : 'task/list/' ,
-    achievement : 'user/achievement/',
-    sign : 'user/signinlist'
+class centerModel extends Model{
 
-}
-
-function centerModel() {
-
-}
-
-centerModel.prototype = new Model();
-
-/* globals config */
-$.extend(centerModel.prototype,{
-
-    dataModel : function (dataKey) {
+    dataModel(dataKey) {
         var me = this;
-        var data = {
-            uid: _APP_HASH.uid || '',
-            cuid: config.clientInfo.cuid,
-            sv: config.clientInfo.sv || '',
-            c: config.clientInfo.c || ''
-        };
-        if (window.config.clientInfo.loc) {
-            var loc = window.config.clientInfo.loc.replace(/^\(|\)$/g, '');
-            loc = loc.split(',');
 
-            data.loc_x = loc[0];
-            data.loc_y = loc[1];
+        var data = {
+            area : "-1" ,
+            beginTime : '' ,
+            city : "-1" ,
+            customer : "",
+            department : "",
+            departmentIds : "" ,
+            draw :1,
+            endTime : "",
+            manageAccount : "",
+            manageName : "",
+            orderNumber : "" ,
+            orderStatus : "-1",
+            order_type  : "-1",
+            pageNow  : 1,
+            pageSize  : 10 ,
+            productName : "",
+            province : "-1",
+            reconciliationStatusx : "-1"  
         }
+
         return new Promise(function(resolve, reject){
 
 
-            var url = userConfig['host'] + urlDict[dataKey];
+            //var url = userConfig['host'] + urlDict[dataKey];
             // var url = 'http://cq01-ocean-53.epc.baidu.com:8787/usersystem_v2/' + urlDict[dataKey];
 
             var xhr = $.ajax({
-                url: url,
-                data: data,
-                method: 'GET',
+                url: "http://qikun.bravowhale-dev.com:8118/admin/sales/searchAllSalesOrder/search",
+                data: JSON.stringify(data),
+                contentType : 'application/json;charset=utf-8',
+                method: 'POST',
                 timeout : 5000,
                 dataType: 'jsonp',
                 cache: false,
                 success: function (ret) {
-                    if (ret.error === 2000 || ret.error === 4001) {
-                        if (ret.error === 4001) {
-                            ret.data.needLogin = true;
-                        }
-                        resolve(ret.data);
-                    } else {
-                        reject();
-                    }
+                    console.log(ret);
+                    // if (ret.error === 2000 || ret.error === 4001) {
+                    //     if (ret.error === 4001) {
+
+                    //         ret.data.needLogin = true;
+                    //     }
+                    //     resolve(ret.data);
+                    // } else {
+                    //     reject();
+                    // }
 
                 },
                 error: function () {
+                    console.log('fail')
                     reject();
                 }
             });
         });
     }
+
+
+}
+  
+
+/* globals config */
+$.extend(centerModel.prototype,{
+
+
 });
 
 module.exports = centerModel;

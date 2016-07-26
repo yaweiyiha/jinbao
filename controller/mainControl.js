@@ -1,8 +1,8 @@
 /**
  * 此处需要声明 require.async所有的可能值
- * @require.async usersysv2:widget/header/header.js
- * @require.async usersysv2:widget/form/form.js
- * @require.async usersysv2:widget/menu/menu.js
+ * @require.async jinbao:widget/header/header.js
+ * @require.async jinbao:widget/form/form.js
+ * @require.async jinbao:widget/menu/menu.js
  */
 
 import Control from 'static/js/controller.js'
@@ -32,6 +32,20 @@ var widgets  = {
     menu : {
         widget: 'menu',
         container: '.menu-box'
+    },
+    table : {
+        widget: 'table',
+        container: '.content-box',
+        data: {
+            username: 'xuyawei',
+        },
+    },
+    cityselect : {
+        widget: 'cityselect',
+        container: '.content-box',
+        data: {
+            username: 'xuyawei',
+        },
     }
 };
 
@@ -51,9 +65,12 @@ class MainControl extends Control{
     init(data) {
 
         this.widgets = this.createPageStructure(pageStructure, widgets);
-        console.log(this.widgets);
-        this.getViews([this.widgets.header,this.widgets.form,this.widgets.menu], data.form);
 
+        // var centerData = this.getModel('center',function(model){
+        //     model.getData();
+        // });
+        this.getViews([this.widgets.header,this.widgets.form,
+            this.widgets.menu,this.widgets.table,this.widgets.cityselect], data.form);
     }
 }
 

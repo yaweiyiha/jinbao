@@ -11,19 +11,34 @@ require.loadCss({
 var form = Widget.extend({
     
     init: function (data = {}) {
-    	data  = this.processData(data);
-        var eles = this.display(data, tpl, 'native');
+        //debugger 
+    	let res  = this.processData(data);
+        this.eles = this.display(res, tpl, 'native');
+        this.render();
+        this.bind();
 
-        $('.nav-tabs > li:first-child', eles).addClass('active');
     },
     processData : function (data = {}){
+
     	return data;
     },
+    render :function(){
+        $('.nav-tabs > li:first-child', this.eles).addClass('active');
+    },
+    bind : function(){
+        $('.nav-tabs > li').on('click' ,function(){
+            var childrens = $(this).parent().children();
+            // for(var c of Object.entries(childrens)) {
+                
+            // }
+            childrens.forEach(function(c){
+                
+                $(c).hasClass('active') && $(c).removeClass('active');
+            });
+            $(this).addClass('active');
 
-    method:{
-    	doSomeThing : function(){
-            alert('hello');
-    	}
+        })
+
     }
 })
 

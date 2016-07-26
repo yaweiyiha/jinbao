@@ -1,8 +1,5 @@
-window.userConfig = {
-    // host:  "http://yf-orp-app0353.yf01.baidu.com:8240/usersystem/",
-    host: 'http://client.map.baidu.com/usersystem/'
-    // host: 'http://cq01-ocean-53.epc.baidu.com:8787/usersystem_v2/'
-    // host: 'http://yf-orp-app0353.yf01.baidu.com:8240/usersystem2/'
+window.Config = {
+	host : "http://qikun.bravowhale-dev.com:8118/admin/masterdate/",
 
 }
 

@@ -6,7 +6,7 @@
 set namespace ; require file by modular way 
 ********************************************/
 
-fis.config.set('namespace', 'usersysv2');
+fis.config.set('namespace', 'jinbao');
 
 /************************************
 set domain to make sure that you 
@@ -26,13 +26,13 @@ demo : fis3 relase xuxu -w
 fis.media('test').match('*', {
     deploy: fis.plugin('http-push', {
         receiver: 'http://cp01-rdqa-dev101.cp01.baidu.com:8456/webapp/receiver.php',
-        to: '/home/users/songxin03/map/8456/lighttpd/htdocs/usersysv2'
+        to: '/home/users/songxin03/map/8456/lighttpd/htdocs/jinbao'
     })
 });
 fis.media('fang').match('*', {
     deploy: fis.plugin('http-push', {
         receiver: 'http://cq01-rdqa-dev050.cq01.baidu.com:8008/webmap/receiver.php',
-        to: '/home/users/wangjiapeng/superman/lighttpd/htdocs/usersysv2'
+        to: '/home/users/wangjiapeng/superman/lighttpd/htdocs/jinbao'
     }),
     domain: '/' + fis.get('namespace')
 });
@@ -40,7 +40,7 @@ fis.media('fang').match('*', {
 fis.media('xuxu').match('*', {
     deploy: fis.plugin('http-push', {
         receiver: "http://cq01-rdqa-dev072.cq01.baidu.com:8038/webapp/receiver.php",
-        to: '/home/users/jiazheng/work-new/8038/lighttpd/htdocs/usersysv2'
+        to: '/home/users/jiazheng/work-new/8038/lighttpd/htdocs/jinbao'
     }),
     domain: '/' + fis.get('namespace'),
 });
@@ -119,7 +119,7 @@ fis.match('::package', {
         ],
         'static/core-js.js': [
             '/config/**.js',
-            '/static/js/*.js',
+            '/static/js/**.js',
             '/widget/url/*.js',
             '/widget/cookie/*.js',
             '/widget/util/*.js',
@@ -131,8 +131,12 @@ fis.match('::package', {
         'static/center_sync_0_pkg.js': [
             'controller/centerControl.js',
             'model/centermodel.js',
+            'model/areamodel.js',
             'widget/header/header.js',
-            'widget/form/form.js'
+            'widget/form/form.js',
+            'widget/menu/menu.js',
+            'widget/table/table.js',
+            'widget/cityselect/cityselect.js'
         ],
         'static/like_sync_0_pkg.js': [
             'controller/likeControl.js',

@@ -52,13 +52,15 @@ var Widget = (function() {
                 el: container.get(0),
                 data: data,
                 template: tpl,
-                methods: me.method
+                methods: me.method,
+                watch : me.watch,
             });
 
             return vm;
 
         } else if (type === 'native') {
             var tpl = $(tpl(data));
+            container.empty();
             container.append(tpl);
             return tpl;
         }

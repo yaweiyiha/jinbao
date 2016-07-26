@@ -1,10 +1,10 @@
 /**
  * 此处需要声明 require.async所有的可能值
 
- * @require.async usersysv2:model/centermodel.js
- * @require.async usersysv2:model/rankmodel.js
- * @require.async usersysv2:model/likemodel.js
- * @require.async usersysv2:model/landownermodel.js
+ * @require.async jinbao:model/centermodel.js
+ * @require.async jinbao:model/rankmodel.js
+ * @require.async jinbao:model/likemodel.js
+ * @require.async jinbao:model/landownermodel.js
  */
 
 export default class Control{
@@ -31,7 +31,7 @@ export default class Control{
     }
 
     getModel(modelName, cb) {
-        var modelPath  = "usersysv2:model/" + modelName + 'model.js';
+        var modelPath  = "jinbao:model/" + modelName + 'model.js';
         require.async(modelPath, function (Model) {
             var model = new Model();
             cb && cb(model);
@@ -54,11 +54,10 @@ export default class Control{
             var pageDataCopy = $.extend(true, {}, pageData);
             data = $.extend(true, pageDataCopy, data);
             dataResource.push(data);
-            var viewPath = 'usersysv2:widget/' + item.widget  + '/' + item.widget + '.js';
+            var viewPath = 'jinbao:widget/' + item.widget  + '/' + item.widget + '.js';
             widgetResource.push(viewPath);
             
         });
-
         require.async(widgetResource, function (...widgets) {
             widgets.forEach(function (widget, index) {
                 try {
@@ -78,6 +77,7 @@ export default class Control{
         
         if (structure) {
             structure = $(structure);
+            container.empty();
             container.append(structure);
         }
 

@@ -12,7 +12,7 @@
     <ul class="nav nav-tabs nav-justified">
     <%for (var i = 0, len = tabs.length; i < len; i++ ) {%>
       <li>
-        <a href="javascript:;" data-key="<%-tabs[i].key%>" @click="doSomeThing"><%-tabs[i].value%></a>
+        <a href="<%-host+tabs[i].url%>" data-key="<%-tabs[i].key%>"><%-tabs[i].value%></a>
       </li>
     <%}%>
     </ul>
@@ -31,7 +31,7 @@
             <%} else if (item.type === 'select') {%>
               <div class="form-group input-group">
                   <div class="input-group-addon" ><%-item.name%></div>
-                  <select class="form-control" placeholder="" >
+                  <select class="form-control" >
                   <%for (var k = 0, lenk = item.selectList.length; k < lenk; k++ ) {%>
                     <option value=""><%-item.selectList[k]%></option>
                   <%}%>

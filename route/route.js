@@ -1,6 +1,6 @@
 /**
  * 此处需要声明 require.async所有的可能值
- * @require.async usersysv2:controller/mainControl.js
+ * @require.async jinbao:controller/mainControl.js
  */
 
 import Url from 'widget/url/url.js'
@@ -22,6 +22,7 @@ class Router {
         });
 
         window.addEventListener('hashchange', function () {
+
             listener.trigger('hash', 'change');
             me.navigation();
         }, false);
@@ -33,7 +34,7 @@ class Router {
         let hash = Url.getHash() || this.DEFUALT_PAGE;
         let page = Url.getPage() || '';
         let configData = urlConfig[page] || {};
-        let path = `usersysv2:controller/${hash}Control.js`;
+        let path = `jinbao:controller/${hash}Control.js`;
         
         listener.trigger('page', 'change');
         
