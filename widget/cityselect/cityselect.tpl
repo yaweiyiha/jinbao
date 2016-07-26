@@ -2,7 +2,7 @@
 	<div class="input-group form-group col-md-9">
 		<select class="form-control col-md-3 " class="province" v-model="province">
 			<template v-for="pr in province" >
-				<option value="{{pr.name}}">{{pr.name}}</option>
+				<option value="{{pr.code}}">{{pr.name}}</option>
 			</template>
 			
 		</select>

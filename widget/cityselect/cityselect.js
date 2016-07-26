@@ -11,10 +11,12 @@ require.loadCss({
 
 var cityselect = Widget.extend({
     data : {
-        province: {
-    		name : [],
-    		code : [],
-        }
+        province: [
+            {
+                name : '',
+                code : ''
+            }
+        ]
     },
     init: function () {
         var vm = this.display(this.data, tpl,'vue');
@@ -26,20 +28,21 @@ var cityselect = Widget.extend({
     	
     },
     render:function(){
-    	var me = this;
     	this.getProvince();
 
     },
     getProvince :function(){
-
+        var me  = this;
     	this.area.getData('province').then(function(data){
-    		debugger
-    		let list = data.list ;
-				var html = '';
-				list.forEach(function(li){
-					me.data.province.name.push(li.provinceName);
-					me.data.province.code.push(li.provinceCode);
-				});
+			data.forEach(function(li){
+                var obj = {
+                    name : li.provinceName,
+                    code : li.provinceCode
+                }
+
+				me.data.province.push(obj);
+			});
+
     	},
     	 function(value) {
   				// failure

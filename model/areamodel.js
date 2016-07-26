@@ -19,10 +19,8 @@ class areaModel extends Model{
                 dataType: 'json',
                 cache: false,
                 success: function (ret) {
-                	debugger
                     if (ret.status === 'S') {
-                    	debugger
-                        resolve(ret.data);
+                        resolve(ret.list);
                     } else {
                         reject();
                     }
