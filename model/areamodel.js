@@ -4,10 +4,11 @@ import Model from 'static/js/model.js'
 
 class areaModel extends Model{
 
-    getData(dataKey = '') {
+    getData(dataKey = '',opt) {
 
     	var Dict = {
     		'province' : 'listProvinces',
+            'city' : 'listByProvinceCode',
     	}
     	
         return new Promise(function(resolve, reject){
@@ -19,14 +20,11 @@ class areaModel extends Model{
                 dataType: 'json',
                 cache: false,
                 success: function (ret) {
-                	debugger
                     if (ret.status === 'S') {
-                    	debugger
-                        resolve(ret.data);
+                        resolve(ret.list);
                     } else {
                         reject();
                     }
-
                 },
                 error: function () {
                     console.log('fail')

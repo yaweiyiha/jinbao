@@ -65,12 +65,6 @@ class centerModel extends Model{
 
 
 }
-  
 
-/* globals config */
-$.extend(centerModel.prototype,{
-
-
-});
 
 module.exports = centerModel;

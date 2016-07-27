@@ -11,10 +11,12 @@ require.loadCss({
 
 var cityselect = Widget.extend({
     data : {
-        province: {
-    		name : [],
-    		code : [],
-        }
+        province: [
+            { name : '', code : '' }
+        ],
+        city : [
+            { name : '', code : '' }
+        ]
     },
     init: function () {
         var vm = this.display(this.data, tpl,'vue');
@@ -32,21 +34,32 @@ var cityselect = Widget.extend({
     },
     getProvince :function(){
 
+        var me = this;
     	this.area.getData('province').then(function(data){
-    		debugger
-    		let list = data.list ;
-				var html = '';
-				list.forEach(function(li){
-					me.data.province.name.push(li.provinceName);
-					me.data.province.code.push(li.provinceCode);
-				});
+			data.forEach(function(li){
+
+                let obj = {
+                    code : li.provinceCode,
+                    name : li.provinceName
+                }
+				me.data.province.push(obj);
+			});
     	},
     	 function(value) {
   				// failure
 		});
     },
     getCity : function(){
+        this.area.getData('city').then(function(data){
+            data.forEach(function(li){
 
+                let obj = {
+                    name : li.provinceName,
+                    code : li.provinceCode
+                }
+                me.data.province.push(obj);
+            });
+        });
     },
     getArea :function(){
 
@@ -54,6 +67,9 @@ var cityselect = Widget.extend({
 
     watch: {
     	province : function(){
+
+            console.log(this.province);
+
     		console.log('provonce changed!');
     	}
     }
