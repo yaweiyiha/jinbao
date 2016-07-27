@@ -12,6 +12,7 @@ require.loadCss({
 var cityselect = Widget.extend({
     data : {
         province: [
+
             { name : '', code : '' }
         ],
         city : [
@@ -28,12 +29,10 @@ var cityselect = Widget.extend({
     	
     },
     render:function(){
-    	var me = this;
     	this.getProvince();
 
     },
     getProvince :function(){
-
         var me = this;
     	this.area.getData('province').then(function(data){
 			data.forEach(function(li){
@@ -44,6 +43,7 @@ var cityselect = Widget.extend({
                 }
 				me.data.province.push(obj);
 			});
+
     	},
     	 function(value) {
   				// failure
