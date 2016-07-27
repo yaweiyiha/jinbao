@@ -12,7 +12,7 @@ var menu = Widget.extend({
     
     init: function (data) {
         var menusData = data.menus;
-		console.log(JSON.stringify({menusData}));
+		//console.log(JSON.stringify({menusData}));
 		var vm = this.display({menusData}, tpl, 'vue');
         // vm.$set('message', 'hello taotao');
     }
