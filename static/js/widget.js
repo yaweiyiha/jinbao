@@ -60,7 +60,8 @@ var Widget = (function() {
 						}
 						
 						var f = g.next().get(0);
-						console.log($(f).html());
+						//console.log($(f).html());
+						
 						if (!$(f).is(":visible")) {
 							var d = $(f.parentNode.parentNode).closest("ul");
 							d.find("> .open > .submenu").each(function() {
