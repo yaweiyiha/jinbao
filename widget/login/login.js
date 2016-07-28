@@ -11,8 +11,8 @@ require.loadCss({
 var login = Widget.extend({
     
     init: function (data) {
+		console.log(JSON.stringify(data));
         var vm = this.display(data, tpl);
-
         
     }
 	
