@@ -56,14 +56,17 @@ class MainControl extends Control{
     }
 
     init(data) {
-
+		var me = this;
 		//Object.assign(data.form, menusConfig);
         this.widgets = this.createPageStructure(pageStructure, widgets);
-
+		me.getViews([me.widgets.header]);
+		me.getViews([me.widgets.form],data.form);
+		me.getViews([me.widgets.menu],menusConfig);
+		
         var centerData = this.getModel('center',function(model){
             model.getData().then(function(res){
-                me.getViews([me.widgets.header,me.widgets.form,
-                     me.widgets.menu], Object.assign(data.form, menusConfig));
+                /*me.getViews([me.widgets.header,me.widgets.form,
+                     me.widgets.menu], Object.assign(data.form, menusConfig));*/
                 me.getViews([me.widgets.table], $.extend(res,data.form));
             });
         });
