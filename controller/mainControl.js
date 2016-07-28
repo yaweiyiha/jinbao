@@ -56,7 +56,8 @@ class MainControl extends Control{
     }
 
     init(data) {
-        var me = this;
+
+		Object.assign(data.form, menusConfig);
         this.widgets = this.createPageStructure(pageStructure, widgets);
 
         var centerData = this.getModel('center',function(model){

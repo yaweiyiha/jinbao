@@ -11,8 +11,9 @@ require.loadCss({
 var menu = Widget.extend({
     
     init: function (data) {
-        var vm = this.display(data, tpl);
-
+        var menusData = data.menus;
+		//console.log(JSON.stringify({menusData}));
+		var vm = this.display({menusData}, tpl, 'vue');
         // vm.$set('message', 'hello taotao');
     }
 })

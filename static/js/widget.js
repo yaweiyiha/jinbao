@@ -52,7 +52,35 @@ var Widget = (function() {
                 el: container.get(0),
                 data: data,
                 template: tpl,
-                methods: me.method,
+                methods: {
+					subShow: function (event) {
+						var g = $(event.target).closest("a");
+						if (!g || g.length == 0) {
+							return
+						}
+						
+						var f = g.next().get(0);
+						//console.log($(f).html());
+						
+						if (!$(f).is(":visible")) {
+							var d = $(f.parentNode.parentNode).closest("ul");
+							d.find("> .open > .submenu").each(function() {
+								if (this != f && !$(this.parentNode).hasClass("active")) {
+									$(this).slideUp(200).parent().removeClass("open")
+								}
+							})
+						} else {}
+						
+						if ($(f.parentNode.parentNode).hasClass("nav-list")) {
+							return false
+						}
+						$(f).slideToggle(200).parent().toggleClass("open");
+						return false
+						//var $this = $(event.target);
+						//g.next('ul').css('display','block');
+						
+					}
+				},
                 watch : me.watch,
             });
             return vm;
