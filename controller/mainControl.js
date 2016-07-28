@@ -57,17 +57,16 @@ class MainControl extends Control{
 
     init(data) {
 
-		Object.assign(data.form, menusConfig);
+		//Object.assign(data.form, menusConfig);
         this.widgets = this.createPageStructure(pageStructure, widgets);
 
         var centerData = this.getModel('center',function(model){
             model.getData().then(function(res){
                 me.getViews([me.widgets.header,me.widgets.form,
-                     me.widgets.menu], data.form);
+                     me.widgets.menu], Object.assign(data.form, menusConfig));
                 me.getViews([me.widgets.table], $.extend(res,data.form));
             });
         });
-
     }
 }
 
