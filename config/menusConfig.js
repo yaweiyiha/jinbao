@@ -73,7 +73,7 @@ window.menusConfig = {
 			key: '8',
 			url: '', 
 			classStyle:'icon-info-sign', 
-			name:'收益管理',
+			name:'内容管理',
 			level2List: [
 				{ name:'广告', url:'cms/advertisementPosition/advertisement' },
 				{ name:'文章', url:'cms/article/articleList' }
