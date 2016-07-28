@@ -39,10 +39,10 @@ var Widget = (function() {
         var vm = null;
         container.empty();
 
-        var errorTpl = '<div class="wrapper">\
-                        <div class="error-img"></div>\
-                        <p class="info">加载失败，点击重新加载</p>\
-                        </div>';
+        var errorTpl = `<div class="wrapper">
+                        <div class="error-img"></div>
+                        <p class="info">加载失败，点击重新加载</p>
+                        </div>`;
 
         if (_data_._error_ === INTERFACE_FATAL_ERROR) {
             tpl.find('.content-wrapper').remove();
@@ -55,9 +55,8 @@ var Widget = (function() {
                 methods: me.method,
                 watch : me.watch,
             });
-
             return vm;
-
+            
         } else if (type === 'native') {
             var tpl = $(tpl(data));
             container.empty();

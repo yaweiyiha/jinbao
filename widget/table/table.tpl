@@ -27,8 +27,23 @@
 			</tr>
 		</thead>
         <tbody>
-        	<tr role="row" class="odd"><td>SO201607157904142846</td><td class="sorting_1">2016-07-15</td><td>基金产品测试转账支付</td><td>张恒瑞</td><td>zhanghengrui</td><td>杨唐鹏部门</td><td>张恒瑞部门</td><td>gg</td><td>1</td><td>普通</td><td>支付审核 </td><td>产品审核 </td><td>转账付款</td><td><a class="detail" href="javascript:void(0);" data-id="1603"><span>详情</span>&nbsp;</a><a class="submit" href="javascript:void(0);" data-id="1603"><span>审核</span></a></td>
+    		<template v-for="item in data">
+        	<tr role="row" class="odd">
+				<td>{{item.orderNumber}}</td>
+				<td>{{item.paymentName}}</td>
+				<td>{{item.manageName}}</td>
+				<td>{{item.manageAccount}}</td>
+				<td>{{item.parentDepartmentName}}</td>
+				<td>{{item.departmentName}}</td>
+				<td>{{item.customer}}</td>
+				<td>{{item.is_valid}}</td>
+				<td>{{item.order_type}}</td>
+				<td>{{item.notExcuteedNodeNames}}</td>
+				<td>{{item.order_type}}</td>
+				<td>{{item.order_type}}</td>
+	    		<td><a class="detail" href="javascript:void(0);" data-id="1603"><span>详情</span>&nbsp;</a><a class="submit" href="javascript:void(0);" data-id="1603"><span>审核</span></a></td>
         	</tr>
+		</template>
         </tbody>
     </table>	
 </div>

@@ -104,7 +104,7 @@ fis.match('/{controller,model,route,config}/**.js', {
     })
 });
 
-fis.match('static/js/**.js', {
+fis.match('static/js/{controller,model,widget}.js', {
     parser: fis.plugin('babel')
 });
 
@@ -136,7 +136,8 @@ fis.match('::package', {
             'widget/form/form.js',
             'widget/menu/menu.js',
             'widget/table/table.js',
-            'widget/cityselect/cityselect.js'
+            'widget/cityselect/cityselect.js',
+            'widget/datecontrol/datecontrol.js',
         ],
         'static/like_sync_0_pkg.js': [
             'controller/likeControl.js',
@@ -167,6 +168,9 @@ fis.match('/{controller,widget,model}/**.js', {
 
 fis.match('static/js/**.js', {
     isMod: true
+});
+fis.match('static/js/datetime/**.js', {
+    isMod: false
 });
 
 

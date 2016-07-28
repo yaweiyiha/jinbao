@@ -39,13 +39,6 @@ var widgets  = {
         data: {
             username: 'xuyawei',
         },
-    },
-    cityselect : {
-        widget: 'cityselect',
-        container: '.content-box',
-        data: {
-            username: 'xuyawei',
-        },
     }
 };
 
@@ -63,14 +56,17 @@ class MainControl extends Control{
     }
 
     init(data) {
-
+        var me = this;
         this.widgets = this.createPageStructure(pageStructure, widgets);
 
-        // var centerData = this.getModel('center',function(model){
-        //     model.getData();
-        // });
-        this.getViews([this.widgets.header,this.widgets.form,
-            this.widgets.menu,this.widgets.table,this.widgets.cityselect], data.form);
+        var centerData = this.getModel('center',function(model){
+            model.getData().then(function(res){
+                me.getViews([me.widgets.header,me.widgets.form,
+                     me.widgets.menu], data.form);
+                me.getViews([me.widgets.table], $.extend(res,data.form));
+            });
+        });
+
     }
 }
 

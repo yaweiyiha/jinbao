@@ -28,22 +28,33 @@ class centerModel extends Model{
             reconciliationStatusx : "-1"  
         }
 
+        // var data = {
+        //     account : 'yaoone',
+        //     password : 'Abc123456',
+        //     padEquipmentNo : '862823023570478',
+        //     deviceTokenCode :'862823023570478',
+        // }
+
         return new Promise(function(resolve, reject){
 
 
             //var url = userConfig['host'] + urlDict[dataKey];
             // var url = 'http://cq01-ocean-53.epc.baidu.com:8787/usersystem_v2/' + urlDict[dataKey];
-
+           // var url = "http://qikun.bravowhale-dev.com:8118/app/user/login";
+            // var url ="http://10.66.19.231:8088/app/user/login";
+            var url = "http://127.0.0.1:8080/admin/sales/searchAllSalesOrder/search?orderStatus=REVIEW"
+            //var url = "http://qikun.bravowhale-dev.com:8118/admin/sales/searchAllSalesOrder/search?orderStatus=REVIEW"
             var xhr = $.ajax({
-                url: "http://qikun.bravowhale-dev.com:8118/admin/sales/searchAllSalesOrder/search",
+                url:  url ,
+                type: 'POST',
                 data: JSON.stringify(data),
-                contentType : 'application/json;charset=utf-8',
-                method: 'POST',
                 timeout : 5000,
-                dataType: 'jsonp',
+                dataType: 'json',
                 cache: false,
                 success: function (ret) {
-                    console.log(ret);
+                    // console.log(ret);
+                    // console.log('success');
+                    resolve(ret);
                     // if (ret.error === 2000 || ret.error === 4001) {
                     //     if (ret.error === 4001) {
 
@@ -55,8 +66,8 @@ class centerModel extends Model{
                     // }
 
                 },
-                error: function () {
-                    console.log('fail')
+                error: function (ret) {
+                    console.log('fail');
                     reject();
                 }
             });

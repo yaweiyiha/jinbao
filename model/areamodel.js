@@ -5,16 +5,16 @@ import Model from 'static/js/model.js'
 class areaModel extends Model{
 
     getData(dataKey = '',opt) {
-
     	var Dict = {
     		'province' : 'listProvinces',
-            'city' : 'listByProvinceCode',
+            'city' : 'listByProvinceCode/',
+            'subarea' : 'listByCityCode/'
     	}
-    	
+        var opt = opt || '';
+    	var url = Config['host'] + Dict[dataKey] + opt ;
         return new Promise(function(resolve, reject){
-
             var xhr = $.ajax({
-                url: Config['host'] + Dict[dataKey],
+                url: url,
                 method: 'GET',
                 timeout : 5000,
                 dataType: 'json',

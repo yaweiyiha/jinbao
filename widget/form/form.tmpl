@@ -37,8 +37,18 @@
                   <%}%>
                   </select>
               </div> 
+             <%} else if (item.type === 'time') {%>
+                <div class="form-group input-group time">
+                  <div class="input-group-addon" ><%-item.name%></div>
+                  <input class="form-control <%-item.classList%>" readonly>
+                </div> 
             <%} else if (item.type === 'button') {%>
               <button class="<%-item.classList%>"><%-item.name%></button>
+            <%} else if (item.type === 'area') {%>
+              <div class="form-group input-group time">
+               <div class="input-group-addon" ><%-item.name%></div>
+                <city-select></city-select>
+              </div>
             <%}%>
           </div>
         <%}%>

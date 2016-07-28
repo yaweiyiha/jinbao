@@ -11,6 +11,7 @@ require.loadCss({
 var table = Widget.extend({
     
     init: function (data) {
+    	console.log(data);
         var vm = this.display(data, tpl ,'vue');
     }
 })

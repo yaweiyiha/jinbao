@@ -1,4 +1,3 @@
-import Widget from 'static/js/widget.js';
 import areaModel from 'model/areaModel.js';
 
 var style = __inline('./cityselect.inline.less');
@@ -9,70 +8,69 @@ require.loadCss({
     content: style
 });
 
-var cityselect = Widget.extend({
-    data : {
-        province: [
-
-            { name : '', code : '' }
-        ],
-        city : [
-            { name : '', code : '' }
-        ]
+export default Vue.component('city-select', {
+  template: tpl,
+  data: function () {
+    return {
+            provinceSelected : '省',
+            citySelected : '市',
+            province : [],
+            city     : [],
+            subarea  : [],
+            area : new areaModel()
+        }
     },
-    init: function () {
-        var vm = this.display(this.data, tpl,'vue');
-        this.area = new areaModel();
-        this.render();
-
+    ready: function(){
+        this.getProvince();
     },
-    bind: function(){
-    	
-    },
-    render:function(){
-    	this.getProvince();
-
-    },
-    getProvince :function(){
-        var me = this;
-    	this.area.getData('province').then(function(data){
-			data.forEach(function(li){
-
-                let obj = {
-                    code : li.provinceCode,
-                    name : li.provinceName
-                }
-				me.data.province.push(obj);
-			});
-
-    	},
-    	 function(value) {
-  				// failure
-		});
-    },
-    getCity : function(){
-        this.area.getData('city').then(function(data){
-            data.forEach(function(li){
-
-                let obj = {
-                    name : li.provinceName,
-                    code : li.provinceCode
-                }
-                me.data.province.push(obj);
+    methods:{
+        getProvince :function(){
+            var me = this;
+            let param = [key,code,arr,name,code] 
+                      = ['province','',me.province ,'provinceName','provinceCode'];
+            me.getData(...param);
+        },
+        getCity : function(provinceCode = -1){
+            var me = this;
+            let param = [key ,code,arr,name ,code] 
+                      = ['city',provinceCode,me.city ,'cityName','id'];
+            me.getData(...param);
+        },
+        getArea :function(cityCode = -1){
+            var me = this;
+            let param = [key ,code,arr,name ,code] 
+                      = ['subarea',cityCode,me.subarea ,'name','id'];
+            me.getData(...param);         
+        },
+        getData :function( key,code, arr ,name,id ){
+            // debugger
+            // if(arr.length !== 0){
+            //     arr = [];
+            // }
+            this.area.getData(key,code).then(function(data){
+                data.forEach(function(li){
+                    
+                    let obj = {
+                        name : li[name],
+                        code : li[id]
+                    }
+                    arr.push(obj)
+                });
             });
-        });
-    },
-    getArea :function(){
+        }
 
     },
-
     watch: {
-    	province : function(){
+        provinceSelected : function(){
+            if(!$.isArray(this.provinceSelected)){
+                this.getCity(this.provinceSelected);
+            } 
+        },
+        citySelected :function(){
+            if(!$.isArray(this.citySelected)){
+                this.getArea(this.citySelected);
+            }
+        },
 
-            console.log(this.province);
-
-    		console.log('provonce changed!');
-    	}
     }
-})
-
-export default cityselect;
+});
