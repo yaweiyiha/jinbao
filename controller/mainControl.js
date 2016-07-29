@@ -13,7 +13,6 @@ require.loadCss({
     name: 'jinbao-main-page-style',
     content: style
 });
-
 var widgets  = {
     header: {
         widget: 'header',
@@ -57,17 +56,27 @@ class MainControl extends Control{
 
     init(data) {
 
-		Object.assign(data.form, menusConfig);
+        var me = this;
+        var formData = data.form;
         this.widgets = this.createPageStructure(pageStructure, widgets);
+        me.getViews([me.widgets.header]);
+        me.getViews([me.widgets.menu],menusConfig);
 
-        var centerData = this.getModel('center',function(model){
-            model.getData().then(function(res){
-                me.getViews([me.widgets.header,me.widgets.form,
-                     me.widgets.menu], data.form);
-                me.getViews([me.widgets.table], $.extend(res,data.form));
+        if( locData && locData[formData.type] 
+            && typeof locData[formData.type] === Object 
+            && locData[formData.type] !== null){
+            me.getViews([me.widgets.form,me.widgets.table], $.extend(locData[formData.type],data.form));
+        }else{
+            var centerData = this.getModel('table',function(model){
+                model.getData(formData.url,formData.param).then(function(res){
+                    me.setLocData(formData.type , res);
+                    me.getViews([me.widgets.form,me.widgets.table], $.extend(res,formData));
+                });
             });
-        });
-
+        }
+    }
+    setLocData(key,data){
+        locData[key] = data;
     }
 }
 

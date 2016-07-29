@@ -1,4 +1,4 @@
-import areaModel from 'model/areaModel.js';
+import areaModel from 'model/areamodel.js';
 
 var style = __inline('./cityselect.inline.less');
 var tpl = __inline('./cityselect.tpl');

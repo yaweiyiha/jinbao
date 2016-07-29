@@ -11,8 +11,8 @@
     </div>
     <ul class="nav nav-tabs nav-justified">
     <%for (var i = 0, len = tabs.length; i < len; i++ ) {%>
-      <li>
-        <a href="<%-host+tabs[i].url%>" data-key="<%-tabs[i].key%>"><%-tabs[i].value%></a>
+      <li data-key="<%-tabs[i].key%>">
+        <a href="<%-host+tabs[i].url%>" ><%-tabs[i].value%></a>
       </li>
     <%}%>
     </ul>
@@ -43,11 +43,18 @@
                   <input class="form-control <%-item.classList%>" readonly>
                 </div> 
             <%} else if (item.type === 'button') {%>
-              <button class="<%-item.classList%>"><%-item.name%></button>
+              <button class="<%-item.classList%>" onclick="<%-item.evt%>"><%-item.name%></button>
+            <%} else if (item.type === 'dep') {%>
+                <div class="form-group input-group dep">
+                  <div class="input-group-addon" ><%-item.name%></div>
+                  <input class="form-control  readonly">
+                  <div class="input-group-addon choose-button">选择</div>
+                </div> 
             <%} else if (item.type === 'area') {%>
-              <div class="form-group input-group time">
+              <div class="form-group input-group">
                <div class="input-group-addon" ><%-item.name%></div>
                 <city-select></city-select>
+<!--                 <tree-component></tree-component>   -->
               </div>
             <%}%>
           </div>

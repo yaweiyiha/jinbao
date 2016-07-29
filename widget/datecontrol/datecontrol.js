@@ -13,7 +13,6 @@ class  datecontrol{
         }
         this.wrapper = opts.wrapper;
         this.tpl = __inline('./datecontrol.tpl');
-
         this.init();
     }
 

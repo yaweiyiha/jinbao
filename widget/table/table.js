@@ -13,6 +13,13 @@ var table = Widget.extend({
     init: function (data) {
     	console.log(data);
         var vm = this.display(data, tpl ,'vue');
+        this.set(vm);
+    },
+    get: function(){
+    	return this.vm;
+    },
+    set: function(vm){
+    	this.vm = vm;
     }
 })
 

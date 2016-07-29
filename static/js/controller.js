@@ -1,7 +1,7 @@
 /**
  * 此处需要声明 require.async所有的可能值
 
- * @require.async jinbao:model/centermodel.js
+ * @require.async jinbao:model/tablemodel.js
  * @require.async jinbao:model/rankmodel.js
  * @require.async jinbao:model/likemodel.js
  * @require.async jinbao:model/landownermodel.js

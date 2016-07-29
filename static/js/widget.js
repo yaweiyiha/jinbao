@@ -60,7 +60,6 @@ var Widget = (function() {
 						}
 						
 						var f = g.next().get(0);
-						//console.log($(f).html());
 						
 						if (!$(f).is(":visible")) {
 							var d = $(f.parentNode.parentNode).closest("ul");
@@ -76,8 +75,6 @@ var Widget = (function() {
 						}
 						$(f).slideToggle(200).parent().toggleClass("open");
 						return false
-						//var $this = $(event.target);
-						//g.next('ul').css('display','block');
 						
 					}
 				},
