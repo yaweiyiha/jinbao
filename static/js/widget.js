@@ -2,6 +2,7 @@
 var Widget = (function() {
     var self;
     var _init = function(data) {
+
         if (!data._containerDom_) {
             // console.log('widget container is not exists!');
             return;
@@ -52,36 +53,11 @@ var Widget = (function() {
                 el: container.get(0),
                 data: data,
                 template: tpl,
-                methods: {
-					subShow: function (event) {
-						var g = $(event.target).closest("a");
-						if (!g || g.length == 0) {
-							return
-						}
-						
-						var f = g.next().get(0);
-						
-						if (!$(f).is(":visible")) {
-							var d = $(f.parentNode.parentNode).closest("ul");
-							d.find("> .open > .submenu").each(function() {
-								if (this != f && !$(this.parentNode).hasClass("active")) {
-									$(this).slideUp(200).parent().removeClass("open")
-								}
-							})
-						} else {}
-						
-						if ($(f.parentNode.parentNode).hasClass("nav-list")) {
-							return false
-						}
-						$(f).slideToggle(200).parent().toggleClass("open");
-						return false
-						
-					}
-				},
+                methods: me.methods,
                 watch : me.watch,
             });
+            this.vm = vm; 
             return vm;
-            
         } else if (type === 'native') {
             var tpl = $(tpl(data));
             container.empty();
@@ -89,13 +65,12 @@ var Widget = (function() {
             return tpl;
         }
 
-        // tpl.appendTo(container);
-
         // container.find('.error-wrapper').on('click', function () {
         //     me._last_reload_time = +new Date();
         //     $(this).find('.info').text('重新加载中...');
         //     me.reload();
         // });
+
     }
 
     Widget.prototype.reload = function () {
@@ -119,6 +94,7 @@ var Widget = (function() {
         }
 
     }
+
     /**
      * 根据传进来的对象实例扩展组件基类，会返回child而不是Widget是因为如果在Widget基类上直接扩展，多个组件会相互影响
      * @param  {Object} obj 组件对象实例
@@ -142,6 +118,7 @@ var Widget = (function() {
         }
         return child;
     };
+
     return Widget;
 })();
 

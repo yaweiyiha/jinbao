@@ -8,54 +8,46 @@
     </script>
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<!--     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" media="(device-height: 568px)" />
     <meta name="format-detection" content="telephone=no" searchtype="map">
     <meta name="apple-mobile-web-app-capable" content="yes"/>       
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" /> 
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />  -->
     <link rel="stylesheet" type="text/css" href="static/css/reset.inline.css?__inline">
     <link rel="stylesheet" type="text/css" href="static/css/base.inline.css?__inline">
     <link rel="stylesheet" type="text/css" href="static/css/common.inline.less?__inline">
-    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/bootstrap3.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/ace.min.css">
     <link rel="stylesheet" type="text/css" href="static/css/zTreeStyle.css">
+    <style type="text/css">
+
+    </style>
     
 </head>
 
-<body>
-<!--     <div id="loading">加载中...</div> -->
+<body style="overflow-x:hidden">
+    <div id="loading"></div>
 
     <div id="page-wrapper">
     </div>
     <iframe id="communication-frame" class="none" src="" frameborder="0"></iframe>
 <!--     <div id="xuxuDom" class="ztree" style="width:260px; overflow:auto;margin-left:50px"></div> -->
     <div class="dialog-wrapper"></div>
+
 </body>
-<script type="text/javascript" src="config/urlConfig.js"></script>
 <script type="text/javascript" src="config/const.js"></script>
 <script type="text/javascript" src="static/js/controller.js"></script>
 <script type="text/javascript" src="route/route.js"></script>
 <script>
 
-    // listener.on('page', 'loaded', function (type, data) {
-    //   $('#loading').hide();
-    // });
-    // listener.on('page', 'loaderror', function (type, data) {
-    //   $('#loading').hide();
-    // });
+    listener.on('page', 'loaded', function (type, data) {
+      $('#loading').hide();
+    });
+    listener.on('page', 'loaderror', function (type, data) {
+      $('#loading').hide();
+    });
     var router = new Router();
     router.init();
-    var cookie = require('jinbao:widget/cookie/cookie.js');
-    // function communication (msg) {
-    //     msg = msg || '';
-    //     $('#communication-frame').attr('src', msg);
-    // }
-
-    // function debug (msg) {
-    //     $('.debug').append($('<span>' + msg + '</span>'));
-    // }
-
-    cookie.set('JSESSIONID' , '85D660A20998E3CD9B1917B3EFEB6EC2',{path: '/'});
-    cookie.set('xuxu','taotao',{path : '/'});
 
 </script>
 

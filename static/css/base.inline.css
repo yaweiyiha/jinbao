@@ -37,7 +37,16 @@
 .none {
     display: none;
 }
-.row
+.tac {
+    text-align: center;
+}
+.tal {
+    text-align: left;
+}
+.tar {
+    text-align: right;
+}
+/*.row
 {
     display: -webkit-box!important;
     display: -webkit-flex!important;
@@ -133,4 +142,4 @@
     -webkit-box-flex: 0!important;
     -webkit-flex: none!important;
     width: 100%!important;
-}
+}*/

@@ -11,10 +11,34 @@ require.loadCss({
 var menu = Widget.extend({
     
     init: function (data) {
-        var menusData = data.menus;
-		//console.log(JSON.stringify({menusData}));
-		var vm = this.display({menusData}, tpl, 'vue');
-        // vm.$set('message', 'hello taotao');
+		this.display(data, tpl);
+        
+    },
+    methods : {
+		subShow: function (event) {
+			var g = $(event.target).closest("a");
+			if (!g || g.length == 0) {
+				return
+			}
+			
+			var f = g.next().get(0);
+			
+			if (!$(f).is(":visible")) {
+				var d = $(f.parentNode.parentNode).closest("ul");
+				d.find("> .open > .submenu").each(function() {
+					if (this != f && !$(this.parentNode).hasClass("active")) {
+						$(this).slideUp(200).parent().removeClass("open")
+					}
+				})
+			} else {}
+			
+			if ($(f.parentNode.parentNode).hasClass("nav-list")) {
+				return false
+			}
+			$(f).slideToggle(200).parent().toggleClass("open");
+			return false
+			
+		}
     }
 })
 

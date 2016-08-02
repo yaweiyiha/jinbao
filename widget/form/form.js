@@ -1,5 +1,4 @@
 import Widget from 'static/js/widget.js';
-import tableNodel from 'model/tablemodel.js';
 import table from 'widget/table/table.js';
 import dateControl from 'widget/datecontrol/datecontrol.js';
 import cityselect from 'widget/cityselect/cityselect.js';
@@ -51,10 +50,10 @@ var form = Widget.extend({
                  }  
             });
         }
-
     },
     bind : function(){
 
+        var me = this;
         this.beginTimeControl = new dateControl({
             wrapper: $('.beginTime', this._containerDom_)
         });
@@ -67,21 +66,54 @@ var form = Widget.extend({
                 type : 'dep',
                 close : false ,
                 css :[  {width : 600}, {height : 349} ],
-                title : '选择部门'
+                title : '选择部门',
+                onConfirm: (list) => {
+                    let keys = [];
+                    let values = [];
+                    list.forEachd((item) => {
+                        if (!item.isParent) {
+                            keys.push(item.id);
+                            values.push(item.name);
+                        }
+                    });
+
+                    let inputEle = $(this).prev();
+                    inputEle.val(values.join(','));
+                    inputEle.attr('data-values', values.join(','));
+                }
             }
             var dialog = new Dialog(setting);
-        }) 
-    },
-    submit :function(){
-        
-        var setting = {
-            url : this.data.url,
-            data : data
-        }
-        var model = new tableNodel(setting);
-    },
-    clearInput :function(){
+        });
 
+        $('.panel-body').on('click', '[data-role=submit]', function () {
+            var inputCollections = $('.panel-body').find('[data-key]');
+            var data = {};
+            var valid = true;
+            for (var i = 0, len = inputCollections.length; i < len; i++) {
+                var ele = $(inputCollections[i]);
+                var key = ele.attr('data-key');
+                var val = ele.attr('data-values') || ele.val();
+                if (key) {
+                    data[key] = val;
+                }
+            }
+            if (valid) {
+                var url = me.data.url ; 
+                data = $.extend({param: data},{url : url});
+                me.updateTable(data);
+            }
+        });
+
+        $('.panel-body').on('click', '[data-role=clearInput]', function () {
+            var inputCollections = $('.panel-body').find('[data-key]');
+            for (var i = 0, len = inputCollections.length; i < len; i++) {
+                var ele = $(inputCollections[i]);
+                var key = ele.val('');
+            }
+        });
+    },
+    updateTable : function(data){
+        listener.trigger('page', 'tableUpdate', data);
     }
 })
 

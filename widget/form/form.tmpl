@@ -19,19 +19,19 @@
     <div class="panel panel-default">
       <div class="panel-body">
       <%for (var i = 0, len = formlist.length; i < len; i++ ) {%>
-      <div class="row">
+      <div class="row ">
         <%for (var j = 0, lenj = formlist[i].length; j < lenj; j++ ) {%>
           <% var item = formlist[i][j]; %>
-          <div class="<%-item.wrapperClass%> input-wrapper">
+          <div class="<%-item.wrapperClass%> input-wrapper ">
             <%if (item.type === 'input') {%>
               <div class="form-group input-group">
                 <div class="input-group-addon" ><%-item.name%></div>
-                <input class="form-control" value="" maxlength="40" placeholder="">
+                <input data-key="<%-item.key%>" class="form-control" value="" maxlength="40" placeholder="">
               </div>
             <%} else if (item.type === 'select') {%>
               <div class="form-group input-group">
                   <div class="input-group-addon" ><%-item.name%></div>
-                  <select class="form-control" >
+                  <select class="form-control" data-key="<%-item.key%>">
                   <%for (var k = 0, lenk = item.selectList.length; k < lenk; k++ ) {%>
                     <option value=""><%-item.selectList[k]%></option>
                   <%}%>
@@ -40,26 +40,28 @@
              <%} else if (item.type === 'time') {%>
                 <div class="form-group input-group time">
                   <div class="input-group-addon" ><%-item.name%></div>
-                  <input class="form-control <%-item.classList%>" readonly>
+                  <input data-key="<%-item.key%>" class="form-control <%-item.classList%>" readonly>
                 </div> 
-            <%} else if (item.type === 'button') {%>
-              <button class="<%-item.classList%>" onclick="<%-item.evt%>"><%-item.name%></button>
             <%} else if (item.type === 'dep') {%>
                 <div class="form-group input-group dep">
                   <div class="input-group-addon" ><%-item.name%></div>
-                  <input class="form-control  readonly">
+                  <input data-key="<%-item.key%>" class="form-control  readonly">
                   <div class="input-group-addon choose-button">选择</div>
                 </div> 
             <%} else if (item.type === 'area') {%>
               <div class="form-group input-group">
                <div class="input-group-addon" ><%-item.name%></div>
-                <city-select></city-select>
-<!--                 <tree-component></tree-component>   -->
+                <city-select key="code"></city-select>
               </div>
             <%}%>
           </div>
         <%}%>
       </div>
       <%}%>
+      <div class="tac">
+        <%for (var i = 0, len = buttonlist.length; i < len; i++ ) {%>
+          <button class="<%-buttonlist[i].classList%>" data-role="<%-buttonlist[i].evt%>"><%-buttonlist[i].name%></button>
+        <%}%>
+      </div>
   </div>
 </div>

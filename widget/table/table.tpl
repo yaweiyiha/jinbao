@@ -27,23 +27,73 @@
 			</tr>
 		</thead>
         <tbody>
+            <div class="emptyContent" style = "display:none">
+                表格内容为空，请重新设置搜索条件
+            </div>
     		<template v-for="item in data">
-        	<tr role="row" class="odd">
-				<td>{{item.orderNumber}}</td>
-				<td>{{item.paymentName}}</td>
-				<td>{{item.manageName}}</td>
-				<td>{{item.manageAccount}}</td>
-				<td>{{item.parentDepartmentName}}</td>
-				<td>{{item.departmentName}}</td>
-				<td>{{item.customer}}</td>
-				<td>{{item.is_valid}}</td>
-				<td>{{item.order_type}}</td>
-				<td>{{item.notExcuteedNodeNames}}</td>
-				<td>{{item.order_type}}</td>
-				<td>{{item.order_type}}</td>
-	    		<td><a class="detail" href="javascript:void(0);" data-id="1603"><span>详情</span>&nbsp;</a><a class="submit" href="javascript:void(0);" data-id="1603"><span>审核</span></a></td>
-        	</tr>
+
+    				<tr role="row" class="odd">
+    					<template v-for="(i,t) in tables">
+							<td v-if="t.key !== ''">{{item[t.key]}}</td>
+				    		<td v-if="i === tables.length-2">
+				    			<a class="detail" href="javascript:void(0);" >
+				    				<span>详情</span>
+				    			</a>
+				    			<a class="submit" href="javascript:void(0);" data-id="1603">
+				    				<span>审核</span>
+				    			</a>
+				    		</td>
+		        		</template>
+		        	</tr>
+
+
 		</template>
         </tbody>
     </table>	
+
+    <div class="row">
+    	<div class="col-sm-5">
+    		<div class="dataTables_info" id="tp_info" role="status" aria-live="polite">第 1 页 ( 总共 154 页，1,538条记录 )</div>
+    	</div>
+    	<div class="col-sm-7">
+    		<div class="dataTables_paginate paging_full_numbers" id="tp_paginate">
+    			<ul class="pagination">
+    				<li class="paginate_button first disabled" id="tp_first">
+    					<a href="#" aria-controls="tp" data-dt-idx="0" tabindex="0">首页</a>
+    				</li>
+    				<li class="paginate_button previous disabled" id="tp_previous">
+    					<a href="#" aria-controls="tp" data-dt-idx="1" tabindex="0">«</a>
+    				</li>
+    				<li class="paginate_button active">
+    					<a href="#" aria-controls="tp" data-dt-idx="2" tabindex="0">1</a>
+    				</li>
+    				<li class="paginate_button ">
+    					<a href="#" aria-controls="tp" data-dt-idx="3" tabindex="0">2</a>
+    				</li>
+    				<li class="paginate_button ">
+    					<a href="#" aria-controls="tp" data-dt-idx="4" tabindex="0">3</a>
+    				</li>
+    				<li class="paginate_button ">
+    					<a href="#" aria-controls="tp" data-dt-idx="5" tabindex="0">4</a>
+    				</li>
+    				<li class="paginate_button ">
+    					<a href="#" aria-controls="tp" data-dt-idx="6" tabindex="0">5</a>
+    				</li>
+    				<li class="paginate_button disabled" id="tp_ellipsis">
+    					<a href="#" aria-controls="tp" data-dt-idx="7" tabindex="0">…</a>
+    				</li>
+    				<li class="paginate_button ">
+    					<a href="#" aria-controls="tp" data-dt-idx="8" tabindex="0">154
+    					</a>
+    				</li>
+    				<li class="paginate_button next" id="tp_next">
+    					<a href="#" aria-controls="tp" data-dt-idx="9" tabindex="0">»</a>
+    				</li>
+    				<li class="paginate_button last" id="tp_last">
+    					<a href="#" aria-controls="tp" data-dt-idx="10" tabindex="0">尾页</a>
+    				</li>
+    			</ul>
+    		</div>
+    	</div>
+    </div>
 </div>

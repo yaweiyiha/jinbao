@@ -1,4 +1,5 @@
 import Widget from 'static/js/widget.js';
+import tableModel from 'model/tableModel.js'
 
 var style = __inline('./table.inline.less');
 var tpl = __inline('./table.tpl');
@@ -10,17 +11,35 @@ require.loadCss({
 
 var table = Widget.extend({
     
+    data :{
+        data : [],  
+    },
     init: function (data) {
-    	console.log(data);
-        var vm = this.display(data, tpl ,'vue');
-        this.set(vm);
+        this.vm = this.display(data, tpl ,'vue');
+        this.bind();
+    },
+    bind: function(){
+        listener.on('page', 'tableUpdate', (type ,data) => {
+            this.update(data);
+        });
     },
     get: function(){
     	return this.vm;
     },
-    set: function(vm){
-    	this.vm = vm;
+    update: function(data){
+
+        let model = new tableModel();
+        model.getData(data.url ,data.param).then((res) => {
+            this.vm.data = res.data;
+        });
+    },
+    watch :{
+        data : function(){
+            if( this.data.length === 0){
+                $(".emptyContent").css('display' , 'block');
+            }
+        }
     }
 })
 
-export default table;
+export default table; 

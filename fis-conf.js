@@ -31,8 +31,6 @@ fis.media('xuxu').match('*', {
   
 });
 
-
-
 /**********************
      parse files 
 **********************/
@@ -46,7 +44,6 @@ fis.match('*.less', {
     rExt: '.css',
     parser: fis.plugin('less')
 });
-
 
 /**********************
      optimize files 
@@ -129,6 +126,7 @@ fis.match('::package', {
             'widget/cityselect/cityselect.js',
             'widget/datecontrol/datecontrol.js',
             'widget/dialog/dialog.js',
+            'widget/backtotop/backtotop.js',
         ],
         'static/like_sync_0_pkg.js': [
             'controller/likeControl.js',

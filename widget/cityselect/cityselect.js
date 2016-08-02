@@ -10,6 +10,7 @@ require.loadCss({
 
 export default Vue.component('city-select', {
   template: tpl,
+  props: ['key'],
   data: function () {
     return {
             provinceSelected : '省',
@@ -43,10 +44,7 @@ export default Vue.component('city-select', {
             me.getData(...param);         
         },
         getData :function( key,code, arr ,name,id ){
-            // debugger
-            // if(arr.length !== 0){
-            //     arr = [];
-            // }
+            
             this.area.getData(key,code).then(function(data){
                 data.forEach(function(li){
                     

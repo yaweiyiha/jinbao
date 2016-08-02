@@ -35,7 +35,6 @@ class Router {
         let page = Url.getPage() || '';
         let configData = urlConfig[page] || {};
         let path = `jinbao:controller/${hash}Control.js`;
-        
         listener.trigger('page', 'change');
         
         require.async(path, function (controller) {

@@ -1,3 +1,5 @@
+import tree from 'widget/tree/tree.js'
+
 var style = __inline('./dialog.inline.less');
 var tpl = __inline('./dialog.tpl');
  
@@ -40,6 +42,12 @@ class dialog{
                 },
                 hide :function(){
                     this.$el.hidden = true
+                },
+                confirm: () => {
+                    let list = window.deparTreeInstance.getCheckedNodes(true);
+                    this.opts.onConfirm && this.opts.onConfirm(list);
+
+                    vm.hide();
                 }
             }
         });
