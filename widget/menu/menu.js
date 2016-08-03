@@ -1,3 +1,4 @@
+
 import Widget from 'static/js/widget.js';
 
 var style = __inline('./menu.inline.less');
@@ -60,9 +61,17 @@ var menu = Widget.extend({
 		*/
 			
 			event.preventDefault();
+			$(event.target).parents('.nav-list').find('a').removeClass('active');
+			$(event.target).addClass('active');
+			var content = document.getElementById('content');
 			var query = event.target.getAttribute('href');
-			sRouter.go(query);
+			var name = event.target.getAttribute('data-name');
+			//alert(name);
+			sRouter.config({
+				mode: 'history'
+			}).go(query);
 			
+			//sRouter.go(query);
 			
 			
 		}

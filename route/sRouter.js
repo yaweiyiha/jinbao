@@ -60,10 +60,12 @@
          */
         listen: function () {
             var self = this;
-            // 绑定监听事件            
+            // 绑定监听事件
             if(this.mode === 'history'){
                 this._addEvent(window, 'popstate', function () {
-                    var path = location.path;
+                    var pathArr = location.href.split("/").slice(4);
+					var path = '';
+					for(var i=0;i<pathArr.length;i++){ path += '/' + pathArr[i]; }
                     self._check(path);
                 });
             } else {
@@ -82,6 +84,7 @@
             var routers = this.routers;
             for(var i = 0,len = routers.length; i < len; i++) {
                 var match = path.match(routers[i].reg);
+				
                 // 匹配成功
                 if(match) {
                     var params = {};
@@ -90,7 +93,6 @@
                         .forEach(function (name,index) {
                             params[name] = match[index + 1];
                         });
-                   
                     routers[i].hander.call({}, {
                         params: params 
                     });
@@ -106,9 +108,12 @@
          */
         go: function (path) {
             if(this.mode === 'history') {
+				var prelctVal = location.href.split("/").slice(0,4);
+				var rootHrefVal = '';
+				for(var i=0;i<prelctVal.length;i++){ rootHrefVal += prelctVal[i] + '/'; }
                 window.history.pushState({
                     path: path
-                },'',path);
+                },'',rootHrefVal + path);
                 this._check(path);
             } else {
                 window.location.hash = path;
@@ -127,17 +132,13 @@
          */
         _compile: function (router) {
             var route = {}; // 路由对象
-            
-            // 将/post/:postid 转换为 /post/(\w+);
-            var paramsReg = /:(\w+)/g;
+			var paramsReg = /(\w+)/g;
             var paramsMatch = router.match(paramsReg);
-            
             if(paramsMatch) {
-              
                 route.paramsName = paramsMatch.map(function (name) {
-                    return name.replace(':','')
+                    return name.replace('','')
                 });
-                router = router.replace(/:(\w+)/g, '(\\w+)');
+                router = router.replace(/(\w+)/g, '(\\w+)');
             }
             
             route.reg = new RegExp( '^' + router + '$');
@@ -160,4 +161,3 @@
         }
     }
 })(window)
-

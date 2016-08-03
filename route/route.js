@@ -46,9 +46,9 @@ class Router {
 	init(){
 		var me = this;
 		if (window.history.pushState) {
-			window.addEventListener("popstate", function() {
-				me.stateTrigger();																
-			});
+			/*window.addEventListener("popstate", function() {
+				me.stateTrigger();															
+			});*/
 
 			// 默认载入
 			me.stateTrigger();
@@ -62,11 +62,16 @@ class Router {
 		for(var i=0;i<query.length;i++){
 			pageHrefVal = pageHrefVal +'/'+ query[i];
 		}
-		
+		//alert(pageHrefVal);
 		if(pageHrefVal == '/'){
 			history.replaceState(null, document.title, location.href+'index.html');
+			$('#loading').hide();
 		}else{
+			$('#loading').hide();
 			
+			sRouter.config({
+				mode: 'history'
+			}).listen();
 		}
 		
 		me.navigation();
