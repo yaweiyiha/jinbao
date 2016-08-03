@@ -19,14 +19,15 @@ var widgets  = {
         data: {},
         container: '.header-box'
     },
+	menu : {
+        widget: 'menu',
+		data: {},
+        container: '.menu-box'
+    },
     form : {
         widget: 'form',
         data: {},
         container: '.cnt-box'
-    },
-    menu : {
-        widget: 'menu',
-        container: '.menu-box'
     },
     table : {
         widget: 'table',
@@ -42,7 +43,7 @@ let pageStructure = `
 <div class="header-box"></div>
 <div class="clearfix">
     <div class="menu-box left"></div>
-    <div class="cnt-box right"></div>
+    <div class="cnt-box right" id="content"></div>
 </div>`;
 
 class MainControl extends Control{

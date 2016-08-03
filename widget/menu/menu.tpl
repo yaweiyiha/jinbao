@@ -10,7 +10,7 @@
 					</a>
 					<ul class="submenu">
 						<li v-for="level2item in menu.level2List">
-							<a href="{{level2item.url}}"  data-level="2" >
+							<a href="{{level2item.url}}" data-level="2" data-name="{{level2item.name}}" v-on:click="eleMenus" style="cursor:pointer;">
 								<i class="icon-double-angle-right"></i>
 								{{level2item.name}}
 							</a>
@@ -18,7 +18,7 @@
 					</ul>
 				</div>
 				<div v-else class="unicldsub">
-					<a href="{{ menu.url }}" data-level="1" >
+					<a href="{{ menu.url }}" data-level="1" data-name="{{ menu.name }}" v-on:click="eleMenus" style="cursor:pointer;">
 						<i class="icon-list {{ menu.classStyle }}" ></i>
 						{{ menu.name }}
 					</a>
