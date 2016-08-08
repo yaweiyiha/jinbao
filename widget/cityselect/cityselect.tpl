@@ -6,14 +6,14 @@
 		</template>
 		
 	</select>
-	<select class="col-md-3 " class="city form-control" style="width:30%" v-model="citySelected">
+	<select class="col-md-3 " class="city form-control"  v-model="citySelected">
 		<option value="">市</option>
 		<template v-for="(index, pr) in city" track-by="$index" >
 			<option value="{{pr.code}}" >{{pr.name}}</option>
 		</template>
 	</select>
-	<select class="col-md-3 " class="area form-control" style="width:30%" data-key={{key}}>
-		<option value="">区</option>
+	<select class="col-md-3 " class="area form-control"  data-key={{key}}>
+		<option value="">县/区</option>
 		<template v-for="(index, pr) in subarea" track-by="$index" >
 			<option value="{{pr.code}}" >{{pr.name}}</option>
 		</template>

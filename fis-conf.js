@@ -164,6 +164,9 @@ fis.match('static/js/datetime/**.js', {
 fis.match('static/js/ztree/**.js', {
     isMod: false
 });
+fis.match('config/pageStructure.js', {
+    isMod: true
+});
 
 
 /**********************

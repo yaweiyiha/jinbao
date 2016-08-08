@@ -1,11 +1,12 @@
 /**
- * 此处需要声明 require.async所有的可能值
-
+ * Class Control for get Models and get Views
+ * 
+ * @author xuyihan@bravowhale.com
+ * @date 2016.8.2
+ *
+ * regist async module for loaded  when system is running
  * @require.async jinbao:model/tablemodel.js
- * @require.async jinbao:model/rankmodel.js
- * @require.async jinbao:model/likemodel.js
- * @require.async jinbao:model/landownermodel.js
- */
+**/
 
 export default class Control{
 
@@ -29,7 +30,11 @@ export default class Control{
             };
         });
     }
-
+    /**
+     * @param  {String} modelName 
+     * @param  {Function} cb
+     * @return {void}
+     */
     getModel(modelName, cb) {
         var modelPath  = "jinbao:model/" + modelName + 'model.js';
         require.async(modelPath, function (Model) {
@@ -38,23 +43,30 @@ export default class Control{
         });
     } 
 
-
+    /**
+     * @param  {Object} widgets
+     * @param  {Object} pageData
+     * @param  {Function} callback
+     * @return {void}
+     */
     getViews(widgets, pageData, callback) {
 
+        let widgetResource = [];
+        let dataResource = [];
         pageData = pageData || {};
-        var widgetResource = [];
-        var dataResource = [];
 
         widgets.forEach(function (item) {
-            var data = item.data || {};
+
+            let data = item.data || {};
             data._container_ = item.wrapper || item.container || '#page-wrapper';
             data._error_ = pageData._error_ || '';
             data._containerDom_ = item.wrapperDom || null;
             data._widgetName_ = item.widget;
-            var pageDataCopy = $.extend(true, {}, pageData);
+
+            let pageDataCopy = $.extend(true, {}, pageData);
             data = $.extend(true, pageDataCopy, data);
             dataResource.push(data);
-            var viewPath = 'jinbao:widget/' + item.widget  + '/' + item.widget + '.js';
+            let viewPath = `jinbao:widget/${item.widget}/${item.widget}.js`;
             widgetResource.push(viewPath);
             
         });
@@ -63,7 +75,7 @@ export default class Control{
                 try {
                     widget.createWidget(dataResource[index]);
                 } catch (e) {
-                    console.error(e);
+                     throw new Error('create widget fail');
                 }
             });
 
@@ -71,7 +83,12 @@ export default class Control{
         })
         
     }
-
+    /**
+     * @param  {String} structure
+     * @param  {Array}  widgets
+     * @param  {String} container
+     * @return {Object}
+     */
     createPageStructure(structure = '', widgets = [], container = '#page-wrapper') {
         container = $(container);
         
@@ -82,16 +99,16 @@ export default class Control{
         }
 
         var counter = 1;
-        for (var i in widgets) {
+        for (let i in widgets) {
             if (widgets.hasOwnProperty(i)) {
-                var item = widgets[i];
-                var eleHtml = '<div class="dynamic-widget-' + counter + '"></div>';
-                var eleDom = $(eleHtml);
-                var wrapper = item.container ? container.find(item.container) : container;
+                let item = widgets[i];
+                let eleHtml = `<div class="dynamic-widget-${counter}"></div>`;
+                let eleDom = $(eleHtml);
+                let wrapper = item.container ? container.find(item.container) : container;
 
                 wrapper.append(eleDom);
 
-                widgets[i].wrapper = '.dynamic-widget-' + counter;
+                widgets[i].wrapper = `.dynamic-widget-${counter}`;
                 widgets[i].wrapperDom = eleDom;
                 counter++;
             }

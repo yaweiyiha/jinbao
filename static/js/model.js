@@ -1,5 +1,18 @@
+/**
+ * Class Model for get Datas 
+ * 
+ * @author xuyihan@bravowhale.com
+ * @date 2016.8.2
+ *
+**/
+
 export default class Model{
     
+    /**
+     * @param  {String} dataKey
+     * @param  {Object} opt
+     * @return {Object}
+     */
     getData(dataKey,opt) {
         var self = this;
         var dataArr = [];
@@ -18,7 +31,7 @@ export default class Model{
     }
     
     setData(data) {
-        this.data = data;
+        window.locData = data;
     }
 
     remove() {

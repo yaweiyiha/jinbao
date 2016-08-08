@@ -39,7 +39,6 @@ class Router {
         
         require.async(path, function (controller) {
             new controller(configData);
-
         });
     }
 }

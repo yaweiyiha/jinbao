@@ -1,3 +1,4 @@
+
 import tree from 'widget/tree/tree.js'
 
 var style = __inline('./dialog.inline.less');
@@ -29,8 +30,6 @@ class dialog{
         this.open(opts);
     }
     open(opts){
-
-
         vm = new Vue({
             el :'.dialog-wrapper',
             data: opts,
@@ -56,7 +55,6 @@ class dialog{
             vm.show();
         }
     }
-
 
     setStyles(styles){
         var me = this;

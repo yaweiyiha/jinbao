@@ -14,7 +14,7 @@ require.loadCss({
 
 var form = Widget.extend({
     
-    init: function (data = {}) {
+    init : function (data = {}) {
 
         this.localData = {};
     	let res  = this.processData(data);
@@ -22,8 +22,7 @@ var form = Widget.extend({
         this.render();
         this.bind();
     },
-    processData : function (data = {}){
-
+    processData :function (data = {}){
     	this.data = data;
         return this.data;   
     },
@@ -88,7 +87,6 @@ var form = Widget.extend({
         $('.panel-body').on('click', '[data-role=submit]', function () {
             var inputCollections = $('.panel-body').find('[data-key]');
             var data = {};
-            var valid = true;
             for (var i = 0, len = inputCollections.length; i < len; i++) {
                 var ele = $(inputCollections[i]);
                 var key = ele.attr('data-key');
@@ -97,11 +95,9 @@ var form = Widget.extend({
                     data[key] = val;
                 }
             }
-            if (valid) {
-                var url = me.data.url ; 
-                data = $.extend({param: data},{url : url});
-                me.updateTable(data);
-            }
+            var url = me.data.url ; 
+            data = $.extend({param: data},{url : url});
+            me.updateTable(data);
         });
 
         $('.panel-body').on('click', '[data-role=clearInput]', function () {

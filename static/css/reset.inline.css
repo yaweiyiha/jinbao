@@ -12,9 +12,12 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 time, mark, audio, video {
     margin: 0;
     padding: 0;
-    border: 0;
+    border: 0;  
     outline: 0;
     /*vertical-align: baseline; delete by jican*/
+}
+body {
+    background: #ffffff;
 }
 a {
     color: inherit;
@@ -82,7 +85,6 @@ del {
 
 select {
     -webkit-appearance:button;
-    border: 0px;
 }
 
 table {

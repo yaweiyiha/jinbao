@@ -1,9 +1,22 @@
+/**
+ * tableModel Model for get Table Datas 
+ * 
+ * @author xuyihan@bravowhale.com
+ * @date 2016.8.2
+ *
+**/
+
 import Model from 'static/js/model.js'
 
 var url = require('jinbao:widget/url/url.js');
 
 class tableModel extends Model{
 
+    /**
+     * @param  {String} url
+     * @param  {Object} param
+     * @return {void}
+     */
     getData(url,param) {
         var me = this;
         return new Promise(function(resolve, reject){

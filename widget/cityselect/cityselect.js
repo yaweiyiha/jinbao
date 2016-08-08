@@ -1,3 +1,10 @@
+/**
+ * component city-select , 
+ * 
+ * @author xuyihan@bravowhale.com
+ * @date 2016.8.2
+ *
+**/
 import areaModel from 'model/areamodel.js';
 
 var style = __inline('./cityselect.inline.less');
@@ -14,7 +21,7 @@ export default Vue.component('city-select', {
   data: function () {
     return {
             provinceSelected : '省',
-            citySelected : '市',
+            citySelected : '',
             province : [],
             city     : [],
             subarea  : [],

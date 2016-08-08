@@ -1,6 +1,18 @@
-/* globals INTERFACE_FATAL_ERROR */
+/**
+ * class Widget  for render widgets
+ * 
+ * @author xuyihan@bravowhale.com
+ * @date 2016.8.2
+ * globals INTERFACE_FATAL_ERROR
+**/
+
 var Widget = (function() {
     var self;
+    /**
+     * init data from Model ,then invoke init function in sub-class
+     * @param  {Object} 
+     * @return {void}
+     */
     var _init = function(data) {
 
         if (!data._containerDom_) {
@@ -32,7 +44,13 @@ var Widget = (function() {
         }
         this._load_error = !!flag;
     }
-
+    /**
+     * render widgets in two ways ,one for vue ,one for native
+     * @param  {Object} data 
+     * @param  {String} tpl  
+     * @param  {String} type
+     * @return {Object}   
+     */
     Widget.prototype.display = function (data, tpl, type = 'vue') {
         var me = this;
         var _data_ = this._data_;
@@ -65,12 +83,6 @@ var Widget = (function() {
             return tpl;
         }
 
-        // container.find('.error-wrapper').on('click', function () {
-        //     me._last_reload_time = +new Date();
-        //     $(this).find('.info').text('重新加载中...');
-        //     me.reload();
-        // });
-
     }
 
     Widget.prototype.reload = function () {
@@ -96,9 +108,10 @@ var Widget = (function() {
     }
 
     /**
-     * 根据传进来的对象实例扩展组件基类，会返回child而不是Widget是因为如果在Widget基类上直接扩展，多个组件会相互影响
-     * @param  {Object} obj 组件对象实例
-     * @return {function}  扩展Widget基类后的组件构造函数
+     * Depends on transfered Objects to extend Base Class, 
+     * return child but widget  for extend Class Widget  directly 
+     * @param  {Object} obj   Component Object 
+     * @return {function}  Constructor Function extends from base Class Widget
      */
     Widget.extend = function(obj) {
         var parent = this;

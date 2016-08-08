@@ -1,4 +1,8 @@
 <div class="jinbao-widget-table ">
+
+    <div class="table-loading">
+        
+    </div>
 	<div class="row table-page-option">
 		<div class="col-sm-6">
 			<div class="dataTables_length" id="tp_length">
