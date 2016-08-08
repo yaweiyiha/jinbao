@@ -5,14 +5,12 @@
 
 import Url from 'widget/url/url.js'
 
-class Router {
+/*class Router {
     
     constructor(){
         this.DEFUALT_PAGE = 'main';
     }
-    /**
-    *  route init 
-    **/
+
     init() {
         var me = this;
         this.navigation();
@@ -29,7 +27,6 @@ class Router {
     }
 
     navigation() {
-
         let me = this;
         let hash = Url.getHash() || this.DEFUALT_PAGE;
         let page = Url.getPage() || '';
@@ -41,4 +38,51 @@ class Router {
             new controller(configData);
         });
     }
-}
+}*/
+
+class Router {
+	
+	init(){
+		var me = this;
+		if (window.history.pushState) {
+			/*window.addEventListener("popstate", function() {
+				me.stateTrigger();															
+			});*/
+
+			// 默认载入
+			me.stateTrigger();
+		}
+	}
+	
+	stateTrigger(){
+		let me = this;
+		var query = location.href.split("/").slice(3);
+		var pageHrefVal = '';
+		for(var i=0;i<query.length;i++){
+			pageHrefVal = pageHrefVal +'/'+ query[i];
+		}
+		//alert(pageHrefVal);
+		if(pageHrefVal == '/'){
+			history.replaceState(null, document.title, location.href+'index.html');
+			$('#loading').hide();
+		}else{
+			$('#loading').hide();
+			
+			sRouter.config({
+				mode: 'history'
+			}).listen();
+		}
+		
+		me.navigation();
+	}
+	
+	navigation() {
+        let page = Url.getPage() || '';
+        let configData = urlConfig[page] || {};
+        let path = `jinbao:controller/mainControl.js`;
+        
+        require.async(path, function (controller) {
+            new controller(configData);
+        });
+    }
+};

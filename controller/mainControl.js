@@ -9,8 +9,7 @@ import Control from 'static/js/controller.js';
 import mainPageStructure  from 'config/pageStructure.js';
 
 /**
- * [mainPage own css]
- * @type {[css]}
+ * mainPage own css
  */
 var style = __inline('/static/css/page/main-page.inline.less');
 
@@ -20,7 +19,7 @@ require.loadCss({
 });
 
 /**
- * [page consists of widgets]
+ * page consists of widgets
  * @type {Object}
  */
 var widgets  = {
@@ -36,6 +35,7 @@ var widgets  = {
     backtotop : 
         { widget: 'backtotop', container: '.cnt-box'}
 };
+
 
 class MainControl extends Control{
 

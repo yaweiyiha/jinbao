@@ -110,6 +110,7 @@ fis.match('::package', {
             '/widget/util/*.js',
             '/widget/pass/*.js',
             '/widget/backToTop/*.js',
+			'/route/sRouter.js',
             '/route/route.js'
         ],
         'static/center_sync_0_pkg.js': [
