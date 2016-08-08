@@ -3,7 +3,7 @@
  * @require.async jinbao:controller/mainControl.js
  */
 
-import Url from 'widget/url/url.js'
+import Url from 'widget/util/url.js'
 
 /*class Router {
     

@@ -1,5 +1,5 @@
 
-import tree from 'widget/tree/tree.js'
+import tree from 'widget/component/tree/tree.js'
 
 var style = __inline('./dialog.inline.less');
 var tpl = __inline('./dialog.tpl');

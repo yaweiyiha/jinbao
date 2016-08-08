@@ -72,6 +72,7 @@ var Widget = (function() {
                 data: data,
                 template: tpl,
                 methods: me.methods,
+                filter : me.filter, 
                 watch : me.watch,
             });
             this.vm = vm; 

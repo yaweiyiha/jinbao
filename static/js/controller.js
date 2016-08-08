@@ -66,7 +66,7 @@ export default class Control{
             let pageDataCopy = $.extend(true, {}, pageData);
             data = $.extend(true, pageDataCopy, data);
             dataResource.push(data);
-            let viewPath = `jinbao:widget/${item.widget}/${item.widget}.js`;
+            let viewPath = `jinbao:widget/module/${item.widget}/${item.widget}.js`;
             widgetResource.push(viewPath);
             
         });

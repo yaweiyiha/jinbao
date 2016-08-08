@@ -105,11 +105,7 @@ fis.match('::package', {
             '/static/js/controller.js',
             '/static/js/model.js',
             '/static/js/widget.js',
-            '/widget/url/*.js',
-            '/widget/cookie/*.js',
             '/widget/util/*.js',
-            '/widget/pass/*.js',
-            '/widget/backToTop/*.js',
 			'/route/sRouter.js',
             '/route/route.js'
         ],
@@ -120,30 +116,14 @@ fis.match('::package', {
             'model/tablemodel.js',
             'model/depmodel.js',
             'model/areamodel.js',
-            'widget/header/header.js',
-            'widget/form/form.js',
-            'widget/menu/menu.js',
-            'widget/table/table.js',
-            'widget/cityselect/cityselect.js',
-            'widget/datecontrol/datecontrol.js',
-            'widget/dialog/dialog.js',
-            'widget/backtotop/backtotop.js',
-        ],
-        'static/like_sync_0_pkg.js': [
-            'controller/likeControl.js',
-            'model/likemodel.js',
-            'widget/like/like.js'
-        ],
-        'static/landlord_sync_0_pkg.js': [
-            'controller/landownerControl.js',
-            'model/landownermodel.js',
-            'widget/landowner/landowner.js'
-        ],
-        'static/rank_sync_0_pkg.js': [
-            'controller/rankControl.js',
-            'model/rankmodel.js',
-            'widget/rank/rank.js',
-            'widget/rankSelect/rankSelect.js'
+            'widget/module/header/header.js',
+            'widget/module/form/form.js',
+            'widget/module/menu/menu.js',
+            'widget/module/table/table.js',
+            'widget/component/cityselect/cityselect.js',
+            'widget/classComponent/datecontrol/datecontrol.js',
+            'widget/classComponent/dialog/dialog.js',
+            'widget/module/backtotop/backtotop.js',
         ]
     })
 });

@@ -26,7 +26,7 @@
 		<thead>
 			<tr role="row">
 				<template  v-for="item in tables">
-					<th width="{{item.width}}" class"sorting_disabled" rowspan="1" colspan="1" aria-label="{{item.name}}">{{item.name}}</th>
+					<th width="{{item.width}}" class"sorting_disabled" rowspan="1" colspan="1" aria-label="{{item.name}}">{{item.name}} </th>
 				</template>
 			</tr>
 		</thead>
@@ -38,6 +38,7 @@
 
     				<tr role="row" class="odd">
     					<template v-for="(i,t) in tables">
+                            <td v-if="t.key === 'dateCreate'">{{item[t.key] | datetime}}</td>
 							<td v-if="t.key !== ''">{{item[t.key]}}</td>
 				    		<td v-if="i === tables.length-2">
 				    			<a class="detail" href="javascript:void(0);" >

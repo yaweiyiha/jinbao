@@ -8,7 +8,7 @@
 
 import Model from 'static/js/model.js'
 
-var url = require('jinbao:widget/url/url.js');
+var url = require('jinbao:widget/util/url.js');
 
 class tableModel extends Model{
 

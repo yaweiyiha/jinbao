@@ -1,8 +1,8 @@
 import Widget from 'static/js/widget.js';
-import table from 'widget/table/table.js';
-import dateControl from 'widget/datecontrol/datecontrol.js';
-import cityselect from 'widget/cityselect/cityselect.js';
-import Dialog from 'widget/dialog/dialog.js';
+import table from 'widget/module/table/table.js';
+import dateControl from 'widget/classComponent/datecontrol/datecontrol.js';
+import cityselect from 'widget/component/cityselect/cityselect.js';
+import Dialog from 'widget/classComponent/dialog/dialog.js';
 
 var style = __inline('./form.inline.less');
 var tpl = __inline('./form.tmpl');
@@ -69,7 +69,7 @@ var form = Widget.extend({
                 onConfirm: (list) => {
                     let keys = [];
                     let values = [];
-                    list.forEachd((item) => {
+                    list.forEach((item) => {
                         if (!item.isParent) {
                             keys.push(item.id);
                             values.push(item.name);

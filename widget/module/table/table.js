@@ -1,5 +1,6 @@
 import Widget from 'static/js/widget.js';
-import tableModel from 'model/tableModel.js'
+import tableModel from 'model/tableModel.js';
+import datetime from 'widget/filter/datetime.js'
 
 var style = __inline('./table.inline.less');
 var tpl = __inline('./table.tpl');
@@ -32,6 +33,9 @@ var table = Widget.extend({
         model.getData(data.url ,data.param).then((res) => {
             this.vm.data = res.data;
         });
+    },
+    filters : {
+        datetime : datetime
     },
     watch :{
         data : function(){
