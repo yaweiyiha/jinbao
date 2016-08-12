@@ -27,7 +27,7 @@ class tableModel extends Model{
                 dataType: 'json',
                 contentType : 'application/json;charset=UTF-8',
                 data: JSON.stringify(param),
-                timeout : 5000,
+                timeout : 10000,
                 cache: false,
                 success: function (ret) {
                     resolve(ret);

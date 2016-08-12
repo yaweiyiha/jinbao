@@ -2,7 +2,7 @@ window.menusConfig = {
 	menus: [
 		{ 
 			key: '1',
-			url: 'ums/dashboard/dashboardManagement', 
+			url: '/admin/ums/dashboard/dashboardManagement', 
 			classStyle:'icon-dashboard', 
 			name:'工作台' 
 		},

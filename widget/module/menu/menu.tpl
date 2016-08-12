@@ -1,4 +1,7 @@
 <div class="jinbao-widget-menu">
+	<a class="menu-toggler display" href="#">
+	    <span class="menu-text"></span>
+	</a>
 	<div class="sidebar sidebar-fixed" id="sidebar">
 		<ul class="nav nav-list" v-on:click="subShow">
 			<li v-for="menu in menus">

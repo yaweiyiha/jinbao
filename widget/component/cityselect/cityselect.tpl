@@ -12,7 +12,7 @@
 			<option value="{{pr.code}}" >{{pr.name}}</option>
 		</template>
 	</select>
-	<select class="col-md-3 " class="area form-control"  data-key={{key}}>
+	<select class="col-md-3 " class="area form-control"  data-key={{key}} v-model="areaSelected">
 		<option value="">县/区</option>
 		<template v-for="(index, pr) in subarea" track-by="$index" >
 			<option value="{{pr.code}}" >{{pr.name}}</option>

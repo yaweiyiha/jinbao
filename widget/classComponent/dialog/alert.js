@@ -1,15 +1,44 @@
-import dialog from 'dialog.js'
+var style = __inline('./dialog.inline.less');
+var tpl = __inline('./dialog.tpl');
+ 
+require.loadCss({
+    name: 'usersys-widget-dialog-style',
+    content: style
+});
 
-class  alert extends dialog{
+class  alertDialog{
+	
+	show(info){
 
-    init() {
-        this.openDeptSelectWin();
-    }
+        let opts = {
+            type  : 'alert',
+            title : '提示信息',
+            buttons : [{'name' : 'ok' , 'type' : 'cancel' }],
+            info    : info 
+        }
 
-    create(opts){
-        this.opts = opts || [];
-    }   
-   
+		vm = new Vue({
+            el :'.dialog-wrapper',
+            data: opts,
+            template: tpl,
+            replace : false,
+            methods: {
+                show: () => {
+                    vm.$el.hidden = false;
+                },
+                hide: () =>{
+                    vm.$el.hidden = true
+                },
+                cancel: () => {
+                    vm.hide();
+                }
+            }
+        });
+
+        if(vm && vm.$el.hidden == true){
+            vm.show();
+        }
+	}
 }
 
-export default alert;
+export default new alertDialog();

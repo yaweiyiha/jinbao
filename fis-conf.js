@@ -105,6 +105,7 @@ fis.match('::package', {
             '/static/js/controller.js',
             '/static/js/model.js',
             '/static/js/widget.js',
+            '/static/js/initapp.js',
             '/widget/util/*.js',
 			'/route/sRouter.js',
             '/route/route.js'
@@ -120,7 +121,9 @@ fis.match('::package', {
             'widget/module/form/form.js',
             'widget/module/menu/menu.js',
             'widget/module/table/table.js',
+            'widget/module/footer/footer.js',
             'widget/component/cityselect/cityselect.js',
+            'widget/component/edit/edit.js',
             'widget/classComponent/datecontrol/datecontrol.js',
             'widget/classComponent/dialog/dialog.js',
             'widget/module/backtotop/backtotop.js',
@@ -145,6 +148,9 @@ fis.match('static/js/datetime/**.js', {
 fis.match('static/js/ztree/**.js', {
     isMod: false
 });
+fis.match('static/js/initapp.js', {
+    isMod: false
+});
 fis.match('config/pageStructure.js', {
     isMod: true
 });
@@ -165,7 +171,11 @@ fis.match('::package', {
 fis.match('*.{js,css,png}', {
     useHash: true
 });
-
+// useHash exclude ueditor
+fis.match('static/js/ueditor/{lang,themes,third-party,dialogs}/**', {
+    useHash: false,
+    isMod: false
+});
 fis.match('*.png', {
     useMap : true
 });

@@ -1,3 +1,42 @@
+.menu-toggler{
+	display: inline-block;
+    position: absolute;
+    left: 0;
+    z-index: 998;
+    width: 45px;
+    height: 32px;
+    margin-right: 2px;
+    line-height: normal;
+    padding-left: 33px;
+    padding-top: 7px;
+    padding-bottom: 1px;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #428bca;
+    color: #fff;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    &::before {
+    	border-top: 1px solid #87b87f;
+	    border-bottom: 1px solid #6fb3e0;
+	    height: 2px;
+	    width: 20px;
+	    content: "";
+	    position: absolute;
+	    z-index: 11;
+	    top: 13px;
+	    left: 4px;
+	    -webkit-transition: all .1s ease;
+	    transition: all .1s ease;
+	    -o-transition: none;
+	    -webkit-box-sizing: content-box;
+	    -moz-box-sizing: content-box;
+	    box-sizing: content-box;
+    }
+}
+
 .nav-list {
 	margin: 0;
 	padding: 0;

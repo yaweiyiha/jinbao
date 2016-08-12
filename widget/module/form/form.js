@@ -2,7 +2,8 @@ import Widget from 'static/js/widget.js';
 import table from 'widget/module/table/table.js';
 import dateControl from 'widget/classComponent/datecontrol/datecontrol.js';
 import cityselect from 'widget/component/cityselect/cityselect.js';
-import Dialog from 'widget/classComponent/dialog/dialog.js';
+import dialog from 'widget/classComponent/dialog/dialog.js';
+import editor from 'widget/component/editor/editor.js';
 
 var style = __inline('./form.inline.less');
 var tpl = __inline('./form.tmpl');
@@ -33,6 +34,17 @@ var form = Widget.extend({
                 el: $('.city-select', this._containerDom_).get(0)
             });
         }
+        if($('.date-control').length !== 0){
+
+            new Vue({
+                el: $('.date-control', this._containerDom_).get(0)
+            });
+        }
+        if($('.text-edit').length !== 0) {
+            new Vue({
+                el: $('.text-edit', this._containerDom_).get(0)
+            });
+        }
 
         if($('.time').length !== 0){
             var container = $(this);
@@ -53,12 +65,6 @@ var form = Widget.extend({
     bind : function(){
 
         var me = this;
-        this.beginTimeControl = new dateControl({
-            wrapper: $('.beginTime', this._containerDom_)
-        });
-        this.endTimeControl = new dateControl({
-            wrapper: $('.endTime', this._containerDom_)
-        });
 
         $('.dep .choose-button').click(function(){
             var setting = {
@@ -66,7 +72,13 @@ var form = Widget.extend({
                 close : false ,
                 css :[  {width : 600}, {height : 349} ],
                 title : '选择部门',
-                onConfirm: (list) => {
+                buttons : [
+                    {'name' : '选择' , 'activeClass' : 'btn-primary' },
+                    {'name' : '取消' , 'activeClass' : 'btn-default' },
+                ],
+                onConfirm: () => {
+
+                    let list = window.deparTreeInstance.getCheckedNodes(true);
                     let keys = [];
                     let values = [];
                     list.forEach((item) => {
@@ -81,7 +93,7 @@ var form = Widget.extend({
                     inputEle.attr('data-values', values.join(','));
                 }
             }
-            var dialog = new Dialog(setting);
+            dialog.show(setting);
         });
 
         $('.panel-body').on('click', '[data-role=submit]', function () {
@@ -95,9 +107,14 @@ var form = Widget.extend({
                     data[key] = val;
                 }
             }
+            if($('.city-select').length !== 0){
+                console.log(cityselect.options.data());
+            }
+
+            //console.log(data);
             var url = me.data.url ; 
-            data = $.extend({param: data},{url : url});
-            me.updateTable(data);
+            //data = $.extend({param: data},{url : url});
+           // me.updateTable(data);
         });
 
         $('.panel-body').on('click', '[data-role=clearInput]', function () {

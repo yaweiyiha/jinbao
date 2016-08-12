@@ -1,4 +1,6 @@
 import Widget from 'static/js/widget.js';
+import dialog from 'widget/classComponent/dialog/dialog.js';
+import alertDialog from 'widget/classComponent/dialog/alert.js';
 
 var style = __inline('./header.inline.less');
 var tpl = __inline('./header.tpl');
@@ -11,13 +13,55 @@ require.loadCss({
 var header = Widget.extend({
 
     data : {
-        message: 'hello xuyawei'
+        show : false,
     },
-    
-    init: function (data) {
-        var vm = this.display(data, tpl);
+    ready: function(){
+    },
+    init: function (res) {
+        let data = $.extend(this.data,res);
+        var vm = this.display(data, tpl,'vue');
+    },
+    methods : {
+        logout: function (){
+            window.location.href ='/admin/logout';
+        },
+        changePwd :function (){
 
-        // vm.$set('message', 'hello taotao');
+            var setting = {
+                type : 'pwd',
+                title : '修改密码',
+                buttons : [
+                    {'name' : '取消' , 'type' : 'confirm' },
+                    {'name' : '确认' , 'type' : 'cancel' },
+                ],
+                onConfirm: (list) => {
+                    
+                }
+            }
+            dialog.show(setting);
+        },
+        changeLocale :() => {
+
+            $.ajax({
+                type : "post",  
+                url : "/admin/changeLanguage",  
+                data : {language: 'zh_CN'},  
+                dataType : 'json',
+                cache : false,
+                success : function(data) {   
+                    if(data.status=='ok') {
+                        //setCookie("JINBAO.LOCALE", dom.id, null);
+                        window.location.reload(); 
+                    } else {
+                        alertDialog.show("语言切换失败");
+                    }
+                },
+                error : function(data) {  
+                    alertDialog.show("语言切换失败");
+                    lock = false;
+                } 
+            }); 
+        }
     }
 })
 

@@ -1,23 +1,27 @@
+import alertDialog from "widget/classComponent/dialog/alert.js"
+
 var style = __inline('./datecontrol.inline.less');
+var tpl = __inline('./datecontrol.tpl');
+
 
 require.loadCss({
     name: 'usersys-widget-datecontrol-style',
     content: style
 });
 
-class  datecontrol{
-
-    constructor(opts){
-        if (!opts.wrapper) {
-            throw new Error('missing opts.wrapper param');
+export default Vue.component('date-control', {
+  
+    template: tpl,
+    data: function () {
+        return {
+            beginTime : '',
+            endTime : '',
+            from : '下单时间',
+            to : '到',
         }
-        this.wrapper = opts.wrapper;
-        this.tpl = __inline('./datecontrol.tpl');
-        this.init();
-    }
-
-    init() {
-        this.wrapper.datetimepicker({
+    },
+    ready: function(){
+        $('.beginTime').datetimepicker({
             language : 'zh-CN',
             format: 'yyyy-mm-dd',
             autoclose: true,
@@ -26,7 +30,27 @@ class  datecontrol{
             startView: 2,
             minView: 2
         });
-    }
-}
+        $('.endTime').datetimepicker({
+            language : 'zh-CN',
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayBtn: true,     
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2
+        });
+    },
+    methods:{
 
-export default datecontrol;
+    },
+    watch: {
+        beginTime : function (){
+
+        },
+        endTime : function () {
+            if(this.endTime < this.beginTime){
+                alertDialog.show("起始时间不能大于结束时间。");
+            }
+        }
+    }
+});

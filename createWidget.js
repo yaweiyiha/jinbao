@@ -59,11 +59,11 @@ function writeFile (filename, content) {
 	});
 }
 
-mkdirSync('widget/' + widget);
+mkdirSync('widget/module/' + widget);
 
-writeFile ('widget/' + widget + '/' + widget + '.inline.less', styleTpl);
-writeFile ('widget/' + widget + '/' + widget + '.js', jsTpl);
-writeFile ('widget/' + widget + '/' + widget + '.tpl', htmlTpl);
+writeFile ('widget/module/'+ widget + '/' + widget + '.inline.less', styleTpl);
+writeFile ('widget/module/'+ widget + '/' + widget + '.js', jsTpl);
+writeFile ('widget/module/'+ widget + '/' + widget + '.tpl', htmlTpl);
 
 console.log('Create Widget Success!');
 

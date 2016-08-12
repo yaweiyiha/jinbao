@@ -16,16 +16,38 @@ var table = Widget.extend({
         data : [],  
     },
     init: function (data) {
+        
+        this.data = data;
         this.vm = this.display(data, tpl ,'vue');
         this.bind();
     },
     bind: function(){
+        var me = this;
         listener.on('page', 'tableUpdate', (type ,data) => {
             this.update(data);
         });
-    },
-    get: function(){
-    	return this.vm;
+        /**
+         *  table query by order 
+         */
+        $('.table-item').on('click',function(){
+
+            let code  = $(this).attr('data-key');
+            let order = ($(this).hasClass('sorting_asc') ? 'desc' : 'asc') || 
+             ($(this).hasClass('sorting_desc') ? 'asc' : 'desc' );
+
+            let param = {
+                draw : 1 ,
+                orderStatus :"REVIEWING" ,
+                pageNow : 1,
+                pageSize : 10,
+                sortString : code + "." + order
+            }
+            let model = new tableModel();
+            model.getData(me.data.url,param).then((res) => {
+                me.vm.data = res.data;
+                $(this).addClass('sorting_asc');
+            });
+        });
     },
     update: function(data){
 

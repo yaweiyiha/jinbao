@@ -17,11 +17,11 @@ require.loadCss({
 
 export default Vue.component('city-select', {
   template: tpl,
-  props: ['key'],
   data: function () {
     return {
             provinceSelected : '省',
             citySelected : '',
+            areaSelected : '',
             province : [],
             city     : [],
             subarea  : [],
@@ -62,16 +62,23 @@ export default Vue.component('city-select', {
                     arr.push(obj)
                 });
             });
+        },
+        get : function(){
+            return this.areaSelected || this.citySelected || this.provinceSelected;
         }
 
     },
     watch: {
         provinceSelected : function(){
+            console.log(this.provinceSelected);
+            console.log(this.get());
             if(!$.isArray(this.provinceSelected)){
                 this.getCity(this.provinceSelected);
             } 
         },
         citySelected :function(){
+            console.log(this.get());
+            console.log(this.citySelected);
             if(!$.isArray(this.citySelected)){
                 this.getArea(this.citySelected);
             }

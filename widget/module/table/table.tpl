@@ -24,23 +24,20 @@
 
 	<table id="tp" class="table table-striped table-hover table-bordered table-responsive dataTable no-footer" style="width: 100%;" role="grid" aria-describedby="tp_info">                
 		<thead>
-			<tr role="row">
+			<tr role="row" >
 				<template  v-for="item in tables">
-					<th width="{{item.width}}" class"sorting_disabled" rowspan="1" colspan="1" aria-label="{{item.name}}">{{item.name}} </th>
+					<th width="{{item.width}}" class="{{item.classList}} table-item" rowspan="1" colspan="1" aria-label="{{item.name}}" data-key="{{item.key}}">{{item.name}}</th>
 				</template>
 			</tr>
 		</thead>
         <tbody>
-            <div class="emptyContent" style = "display:none">
-                表格内容为空，请重新设置搜索条件
-            </div>
     		<template v-for="item in data">
 
     				<tr role="row" class="odd">
     					<template v-for="(i,t) in tables">
                             <td v-if="t.key === 'dateCreate'">{{item[t.key] | datetime}}</td>
 							<td v-if="t.key !== ''">{{item[t.key]}}</td>
-				    		<td v-if="i === tables.length-2">
+				    		<td v-if="i === tables.length">
 				    			<a class="detail" href="javascript:void(0);" >
 				    				<span>详情</span>
 				    			</a>

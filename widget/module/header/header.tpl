@@ -3,14 +3,14 @@
         <div class="navbar-header pull-left">
             <a href="/admin/" class="navbar-brand">
                 <img style="width:23px;height:23px;margin-top:-3px;" src="/static/img/logo.png" alt="">
-                <span class="caption">祺鲲开发后台管理平台</span>
+                <span class="caption">开发后台管理平台</span>
             </a>
         </div>
 
         <div class="navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
                 <li class="light-blue">
-                    <a data-toggle="dropdown" href="#" class="dropdown-toggle" aria-expanded="false">
+                    <a  href="javascript:void(0)"  @click="show=!show">
                         <img class="nav-user-photo" src="/static/img/default_user.jpg">
                         <span class="user-info" style="font-size: 13px;">
                             <small style="font-size: 12px;">您好,</small>
@@ -19,26 +19,24 @@
                         <i class="icon-caret-down"></i>
                     </a>
 
-                    <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                        <li>
-                            <a href="javascript:showChangePwd();">
+                    <ul v-if="show" class="user-menu pull-right">
+                        <li @click="changePwd">
+                            <span >
                                 <i class="icon-edit"></i>修改密码
-                            </a>
+                            </span>
                         </li>
 
-                        <li class="divider"></li>
-
-                        <li>
-                            <a href="/admin/logout" onclick="javascript:sessionStorage.clear();">
+                        <li  @click="logout">    
+                            <!-- cleae session -->
+                            <span >
                                 <i class="icon-off"></i>退出
-                            </a>
+                            </span>
                         </li>
                     </ul>
                 </li>
                 <li class="green">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <span class="badge badge-success" onclick="changeLocale(this)" id="en_US">English</span>
-                        
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0)">
+                        <span class="badge badge-success" @click="changeLocale" id="en_US">English</span>
                     </a>
                 </li>
             </ul>

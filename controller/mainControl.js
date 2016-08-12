@@ -25,7 +25,7 @@ require.loadCss({
 var widgets  = {
 
     header: 
-        { widget: 'header',data: {},container: '.header-box' },
+        { widget: 'header',data: { username : 'yaweiyihan'},container: '.header-box' },
     form : 
         { widget: 'form', data: {},container: '.cnt-box' },
     menu : 
@@ -33,7 +33,9 @@ var widgets  = {
     table : 
         { widget: 'table', container: '.cnt-box' },
     backtotop : 
-        { widget: 'backtotop', container: '.cnt-box'}
+        { widget: 'backtotop', container: '.cnt-box'},
+    footer : 
+        { widget: 'footer', container: '.footer-box'},
 };
 
 
@@ -55,7 +57,7 @@ class MainControl extends Control{
         /**
          * has no data ,can render directly
          */
-        me.getViews([widgets.header,widgets.backtotop]);
+        me.getViews([widgets.header,widgets.backtotop,widgets.footer]);
         /**
          * render with widget's own data
          */
